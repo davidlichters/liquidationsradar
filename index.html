@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="RIMA gleicht Ihre Kundenliste jede Nacht gegen die Gesellschaftsbekanntmachungen im Bundesanzeiger ab und meldet, wenn ein Firmenkunde in Liquidation geht. 79 Euro im Monat, erster Monat frei.">
+<title>RIMA, Frühwarnung bei Liquidation</title>
+<style>
+:root{
+  --white:#FFFFFF; --ink:#1D1D1F; --grey:#5A5B60; --line:#D2D2D7; --fill:#F5F5F7;
+  --g-sun:linear-gradient(96deg,#FF9F0A 0%,#FF6B2C 45%,#FF375F 100%);
+  --g-sea:linear-gradient(96deg,#32ADE6 0%,#0A84FF 50%,#5E5CE6 100%);
+  --g-bloom:linear-gradient(96deg,#FF375F 0%,#D63AD0 50%,#8E5AF2 100%);
+  --g-leaf:linear-gradient(96deg,#30D158 0%,#0FB5A8 55%,#0A84FF 100%);
+  --blue:#0071E3;
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sf);
+  font-size:19.5px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;}
+.bahn{max-width:980px;margin:0 auto;padding:0 32px;}
+.eng{max-width:680px;}
+.grad{background-image:var(--g,var(--g-sun));-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.06em;}
+
+/* Kopfleiste: damit die Seite als Firmenseite erkannt wird, nicht als Dokument */
+.kopf{border-bottom:1px solid var(--line);}
+.kopf .in{max-width:980px;margin:0 auto;padding:18px 32px;display:flex;align-items:baseline;
+  justify-content:space-between;gap:20px;}
+.kopf .wort{font-size:19px;font-weight:700;letter-spacing:-.02em;}
+.kopf .wort span{font-weight:400;color:var(--grey);margin-left:10px;font-size:15px;letter-spacing:-.01em;}
+.kopf a{font-size:15px;color:var(--grey);text-decoration:none;white-space:nowrap;}
+.kopf a:hover{color:var(--ink);}
+
+/* Hero: Text links, das Produkt rechts. Genau ein bunter Teil im Blickfeld. */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:64px;align-items:center;
+  padding:88px 0 96px;}
+h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-height:1.05;text-wrap:balance;}
+.lede{color:var(--grey);font-size:22px;line-height:1.38;letter-spacing:-.02em;margin:0 0 34px;max-width:30ch;}
+.tun{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.knopf{display:inline-block;background:var(--ink);color:var(--white);text-decoration:none;
+  font-size:17px;font-weight:600;letter-spacing:-.012em;padding:15px 26px;border-radius:999px;
+  transition:transform .28s cubic-bezier(.28,.72,.24,1);}
+.knopf:hover{transform:translateY(-1px);}
+.zweit{font-size:17px;font-weight:600;color:var(--blue);text-decoration:none;}
+.knopf:focus-visible,.zweit:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+.frei{font-size:16px;color:var(--grey);margin:22px 0 0;}
+
+/* Das Produkt: die Nachricht, die wir schicken. Unser einziges Bild. */
+.karte{background:var(--fill);border-radius:12px;padding:26px 24px;}
+.karte .zeile{font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
+  text-transform:uppercase;margin:0 0 18px;}
+.karte .firma{font-size:20px;font-weight:640;letter-spacing:-.02em;line-height:1.25;margin:0 0 4px;}
+.karte .ort{font-size:15px;color:var(--grey);margin:0 0 20px;}
+.karte dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px;}
+.karte dt{color:var(--grey);white-space:nowrap;}
+.karte dd{margin:0;font-variant-numeric:tabular-nums;}
+.karte .fuss{margin:20px 0 0;font-size:14.5px;color:var(--grey);line-height:1.45;}
+
+
+/* Kurzfassung: gemessen liest ein Besucher 20 bis 28 Prozent der Woerter und
+   entscheidet in den ersten zehn Sekunden. Hier steht das ganze Angebot. */
+.kurz{background:var(--fill);border-radius:12px;padding:26px 28px;margin:0 0 12px;}
+.kurz .kt{font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
+  text-transform:uppercase;margin:0 0 14px;}
+.kurz ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:13px;}
+.kurz li{font-size:17.5px;line-height:1.52;color:var(--grey);}
+.kurz li b{color:var(--ink);font-weight:640;}
+
+h2{margin:96px 0 16px;font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1.12;text-wrap:balance;}
+p{margin:0 0 18px;}
+.g{color:var(--grey);}
+.q{font-size:16px;color:var(--grey);line-height:1.6;}
+strong{font-weight:640;}
+
+table{border-collapse:collapse;width:100%;font-size:18px;margin:22px 0 10px;}
+th{text-align:left;font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
+  text-transform:uppercase;padding:0 0 10px;border-bottom:1px solid var(--line);}
+th.r,td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+td{padding:14px 0;border-bottom:1px solid var(--line);vertical-align:baseline;}
+tr:last-child td{border-bottom:0;}
+td.ort,td.datum{color:var(--grey);font-size:16px;}
+td.datum{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.rollt{overflow-x:auto;}
+
+.gegen .reihe{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;align-items:baseline;
+  padding:22px 0;border-bottom:1px solid var(--line);}
+.gegen .reihe:last-child{border-bottom:0;}
+.gegen .was{font-size:20px;}
+.gegen .was small{display:block;color:var(--grey);font-size:16.5px;margin-top:7px;line-height:1.52;}
+.gegen .pr{font-size:28px;font-weight:700;letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.gegen .pr em{font-style:normal;font-size:16px;font-weight:400;color:var(--grey);}
+.gegen .uns .was{font-weight:640;}
+.gegen .uns .pr{font-size:42px;}
+
+/* Zahlenreihe: das einzige Element, das mehrere bunte Stellen haben darf,
+   weil es als EIN Bild gelesen wird. Die Ueberschrift darueber bleibt schwarz. */
+.zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:30px 0 34px;}
+.zahlen .k{background:var(--fill);border-radius:12px;padding:22px 18px 20px;text-align:center;}
+.zahlen .oben{font-size:14px;letter-spacing:.01em;color:var(--grey);margin:0 0 6px;}
+.zahlen .z{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:0 0 10px;}
+.zahlen .unten{font-size:15.5px;color:var(--grey);line-height:1.4;margin:0;}
+.zahlen .unten b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+.masch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 44px;margin:30px 0 10px;}
+.masch b{display:block;font-size:21px;font-weight:640;letter-spacing:-.022em;margin-bottom:7px;}
+.masch span{color:var(--grey);font-size:17.5px;line-height:1.55;}
+
+.schritte{list-style:none;margin:28px 0 0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:26px;}
+.schritte li{counter-increment:s;}
+.schritte .nr{font-size:12.5px;font-weight:700;color:var(--grey);letter-spacing:.06em;display:block;margin-bottom:6px;}
+.schritte .nr::before{content:"0" counter(s);}
+.schritte b{font-size:21px;font-weight:640;letter-spacing:-.022em;display:block;margin-bottom:4px;}
+.schritte span.t{color:var(--grey);font-size:18px;}
+
+.klar{color:var(--grey);font-size:17.5px;border-left:2px solid var(--line);padding-left:20px;margin:26px 0;}
+
+footer{border-top:1px solid var(--line);margin-top:104px;padding:34px 0 88px;font-size:15.5px;color:var(--grey);line-height:1.65;}
+footer b{color:var(--ink);font-weight:600;}
+footer a{color:var(--blue);}
+.fz{margin:0 0 14px;}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px;padding:56px 0 64px;}
+  .karte{max-width:420px;}
+}
+@media (max-width:680px){
+  body{font-size:18.5px;}
+  .bahn{padding:0 22px;} .kopf .in{padding:15px 22px;}
+  h1{font-size:36px;} .lede{font-size:19.5px;max-width:none;margin-bottom:28px;}
+  h2{font-size:26px;margin-top:68px;}
+  .masch{grid-template-columns:1fr;gap:26px;}
+  .zahlen{grid-template-columns:1fr;gap:12px;}
+  .zahlen .k{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;
+    align-items:center;text-align:left;padding:18px 20px;}
+  .zahlen .oben{grid-column:2;margin:0;}
+  .zahlen .z{grid-row:1 / span 2;grid-column:1;font-size:40px;margin:0;}
+  .zahlen .unten{grid-column:2;}
+  .kurz{padding:22px 20px;} .kurz li{font-size:17px;}
+  .gegen .reihe{grid-template-columns:1fr;gap:8px;} .gegen .pr{font-size:25px;}
+  .gegen .uns .pr{font-size:34px;}
+  table{font-size:16.5px;}
+  .kopf .wort span{display:none;}
+
+  /* Tabellen auf dem Handy nicht quetschen, sondern stapeln. Vorher lief die
+     Kopfzeile ineinander und die rechte Spalte hing halb aus dem Bild. */
+  .stapel thead{display:none;}
+  .stapel,.stapel tbody,.stapel tr,.stapel td{display:block;width:100%;}
+  .stapel tr{padding:16px 0;border-bottom:1px solid var(--line);}
+  .stapel tbody tr:last-child{border-bottom:0;}
+  .stapel td{border:0;padding:0;display:flex;justify-content:space-between;
+    align-items:baseline;gap:18px;text-align:left;white-space:normal;}
+  .stapel td + td{margin-top:8px;}
+  .stapel td::before{content:attr(data-l);color:var(--grey);font-size:14.5px;flex:1 1 auto;min-width:0;}
+  .stapel td.h{font-size:20px;font-weight:640;letter-spacing:-.02em;margin-bottom:12px;display:block;}
+  .stapel td.h::before{content:attr(data-l);display:block;font-size:13px;font-weight:400;
+    color:var(--grey);letter-spacing:0;margin-bottom:3px;line-height:1.3;}
+  .stapel td.r{white-space:nowrap;}
+}
+</style>
+</head>
+<body>
+
+<header class="kopf"><div class="in">
+  <div class="wort">RIMA<span>Register Insolvency Match</span></div>
+  <a href="mailto:david@lichters.email">david@lichters.email</a>
+</div></header>
+
+<div class="bahn">
+
+<div class="hero">
+  <div>
+    <h1>Ihr Firmenkunde wird abgewickelt. Sie erfahren es <span class="grad">nie</span>.</h1>
+    <p class="lede">Wir lesen jede Nacht den Bundesanzeiger und melden uns, wenn einer Ihrer Firmenkunden in Liquidation geht. <strong>79 Euro im Monat, bis 1.000 Namen.</strong></p>
+    <div class="tun">
+      <a class="knopf" href="https://wa.me/4915730331937">Drei Namen prüfen lassen</a>
+      <a class="zweit" href="mailto:david@lichters.email?subject=Drei%20Namen%20f%C3%BCr%20den%20Abgleich">oder per E-Mail</a>
+    </div>
+    <p class="frei">Drei Namen prüfen wir gratis. Danach erster Monat frei, monatlich kündbar.</p>
+  </div>
+  <div class="karte">
+    <p class="zeile">RIMA · Treffer</p>
+    <p class="firma">Binnewies Unternehmensberatung GmbH</p>
+    <p class="ort">Berlin</p>
+    <dl>
+      <dt>Vorgang</dt><dd>Auflösung, Gläubigeraufruf</dd>
+      <dt>Bekanntgemacht</dt><dd>10.09.2026</dd>
+      <dt>Sperrjahr endet</dt><dd>10.09.2027</dd>
+      <dt>Ihre Kundennummer</dt><dd>4021</dd>
+    </dl>
+    <p class="fuss">So sieht eine Meldung aus. Sie kommt per E-Mail oder WhatsApp, mit Link auf die Fundstelle im Bundesanzeiger.</p>
+  </div>
+</div>
+
+<div class="eng">
+
+<div class="kurz">
+  <p class="kt">In vier Zeilen</p>
+  <ul>
+    <li><b>Das Problem.</b> Wird ein Firmenkunde aufgelöst, steht das nur im Bundesanzeiger. Niemand schreibt Sie an, und nach einem Jahr ist die Firma gelöscht.</li>
+    <li><b>Was wir tun.</b> Wir gleichen Ihre Kundenliste jede Nacht gegen alle neuen Bekanntmachungen ab.</li>
+    <li><b>Was Sie bekommen.</b> Eine Nachricht per E-Mail oder WhatsApp mit Name, Datum und dem Tag, an dem die Frist endet.</li>
+    <li><b>Was es kostet.</b> 79 Euro im Monat bis 1.000 Namen. Erster Monat frei, monatlich kündbar.</li>
+  </ul>
+</div>
+
+<h2>Nichts tun kostet im Schnitt <span class="grad" style="--g:var(--g-bloom)">4.839 Euro</span> im Jahr</h2>
+<p>Von allen deutschen GmbH und UG haben <strong>2,24 Prozent im Jahr</strong> eine Liquidations-Bekanntmachung. Das ist keine Schätzung, das ist unser eigenes Archiv: 32.125 solcher Meldungen in zwölf Monaten, gegen rund 1,43 Millionen Gesellschaften.</p>
+<p>Was das für Sie bedeutet, hängt an zwei Zahlen, die Sie kennen: wie viele Firmenkunden Sie haben und wie hoch eine typische offene Rechnung ist. Die Tabelle rechnet mit 60 Firmenkunden und der Annahme, dass bei 30 Prozent der Fälle wirklich etwas offen steht.</p>
+<div class="rollt">
+<table class="stapel">
+  <thead><tr><th>Ein Firmenkunde kauft typisch für</th><th class="r">Erwarteter Verlust im Jahr</th><th class="r">RIMA lohnt sich ab</th></tr></thead>
+  <tbody>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">3.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">1.210 Euro</td><td class="r" data-l="RIMA lohnt sich ab">48 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">5.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">2.016 Euro</td><td class="r" data-l="RIMA lohnt sich ab">29 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">8.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">3.226 Euro</td><td class="r" data-l="RIMA lohnt sich ab">18 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">12.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">4.839 Euro</td><td class="r" data-l="RIMA lohnt sich ab">12 Firmenkunden</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="q">79 Euro im Monat sind 948 Euro im Jahr. Liegen Sie unter der Schwelle in der rechten Spalte, sagen wir Ihnen ab. Das ist keine Verhandlungstaktik, sondern der Grund, warum wir Sie nach Ihrer Kundenzahl fragen, bevor wir ein Angebot machen.</p>
+
+<h2><span class="grad" style="--g:var(--g-sea)">88 Firmen</span> am Tag, und kein Gläubiger wird benachrichtigt</h2>
+<p class="q">Gesellschaftsbekanntmachungen vom 10. September 2026, echter Auszug.</p>
+<div class="rollt">
+<table>
+  <tr><td>Binnewies Unternehmensberatung GmbH</td><td class="ort">Berlin</td><td class="datum">10.09.2026</td></tr>
+  <tr><td>U.S. Trocken &amp; Akustikbau GmbH</td><td class="ort">Lübben</td><td class="datum">10.09.2026</td></tr>
+  <tr><td>A.R. Wohnbau UG (haftungsbeschränkt)</td><td class="ort">Siegburg</td><td class="datum">10.09.2026</td></tr>
+  <tr><td>Hirse-Patent-Lizenz-GmbH</td><td class="ort">Neu-Isenburg</td><td class="datum">10.09.2026</td></tr>
+</table>
+</div>
+<p class="g">Vier von durchschnittlich 88 an diesem einen Tag. Ab jeder dieser Meldungen läuft ein Sperrjahr nach § 73 GmbHG. Einzeln benachrichtigt wird kein Gläubiger.</p>
+<!-- selbstschuss-ok: Absichtlich: wir geben das Nachschlagen zu, um die Ueberwachung abzugrenzen -->
+<p>Einen Namen, den Sie schon haben, finden Sie dort auch ohne uns. Das ist nicht die Aufgabe. Die Aufgabe ist, vorher nicht zu wissen, <strong>welcher</strong> Ihrer Kunden an <strong>welchem</strong> der 365 Tage drinsteht und unter <strong>welcher Schreibweise</strong>. Rückwärts nachschlagen dauert zwei Minuten. Vorwärts überwachen sind 33.577 Meldungen im Jahr gegen Ihre gesamte Kundenliste, jede Nacht.</p>
+<div class="klar">Damit es richtig dasteht, auch wenn es uns das Argument abschwächt: Wer der Gesellschaft als Gläubiger bekannt ist, dessen Betrag muss nach § 73 Abs. 2 GmbHG hinterlegt werden, auch ohne Meldung. Eng wird es für den, den sie nicht kennt, dessen Rechnung sie bestreitet, oder der nach der Löschung noch etwas will und dann eine Nachtragsliquidation über das Gericht braucht. Deshalb ist der frühe Hinweis nützlich und nicht dramatisch.</div>
+
+<h2>97,2 Prozent Trefferquote, jede Nacht neu</h2>
+<p>Das Ergebnis ist eine Nachricht mit einem Namen und einem Datum. Bis die stimmt, liegen vier Probleme dazwischen, an denen ein selbstgebauter Abgleich reihenweise scheitert.</p>
+<div class="zahlen">
+  <div class="k">
+    <p class="oben">Im Archiv</p>
+    <p class="z grad" style="--g:var(--g-sea)">33.577</p>
+    <p class="unten"><b>Bekanntmachungen</b>lückenlos seit dem 1. September 2025</p>
+  </div>
+  <div class="k">
+    <p class="oben">Gemessen</p>
+    <p class="z grad" style="--g:var(--g-bloom)">97,2 %</p>
+    <p class="unten"><b>Namen gefunden</b>in 1.048 Schreibweisen, 0 Fehlmeldungen</p>
+  </div>
+  <div class="k">
+    <p class="oben">Jede Nacht</p>
+    <p class="z grad" style="--g:var(--g-sun)">111 s</p>
+    <p class="unten"><b>für 1.000 Namen</b>gegen alle neuen Meldungen</p>
+  </div>
+</div>
+<div class="masch">
+  <div>
+    <b>Das Archiv</b>
+    <span>33.577 Bekanntmachungen, lückenlos seit dem 1. September 2025. Wer heute anfängt zu sammeln, hat einen leeren Ordner und sieht keinen einzigen Ihrer Altfälle.</span>
+  </div>
+  <div>
+    <b>Der Namensabgleich</b>
+    <span>Ihre Buchhaltung schreibt „Müller GmbH“, der Bundesanzeiger „Mueller Gesellschaft mit beschränkter Haftung i.L.“. Gegen 300 echte Firmennamen in 1.048 Schreibweisen gemessen: <strong>97,2 Prozent gefunden</strong>. Gegenprobe mit 149 Firmen, die nicht im Bestand sind: 0 Fehlmeldungen.</span>
+  </div>
+  <div>
+    <b>Der Nachtlauf</b>
+    <span>Der Abgleich läuft täglich gegen die neuen Meldungen, nicht einmal im Quartal. 1.000 Namen dauern 111 Sekunden. Eine Prüfung, die Sie von Hand einmal im Jahr machen, findet den Fall elf Monate zu spät.</span>
+  </div>
+  <div>
+    <b>Die Frist</b>
+    <span>Zu jedem Treffer rechnen wir aus, an welchem Tag das Sperrjahr endet, samt der Sonderfälle im Fristenrecht. Das Datum ist der eigentliche Wert der Meldung, nicht der Name.</span>
+  </div>
+</div>
+<p class="q">Das ist unsere Seite der Arbeit. Ihre besteht aus einer Liste, die Sie einmal schicken, und einer Nachricht, wenn etwas passiert.</p>
+
+<h2>Eine Auskunftei kostet über 1.000 Euro im Monat. <span class="grad" style="--g:var(--g-bloom)">Wir 79.</span></h2>
+<div class="gegen">
+  <div class="reihe">
+    <div class="was">Wirtschaftsauskunftei
+      <small>400 bis 740 Euro Mitgliedschaft im Jahr, dazu 12 bis 54 Euro je Auskunft. 1.000 Firmenkunden einmal geprüft sind ab 12.000 Euro im Jahr. Dafür bekommen Sie viel mehr als das hier: Bonität, Bilanzen, Zahlungserfahrungen.</small>
+    </div>
+    <div class="pr">über 1.000 €<em> / Monat</em></div>
+  </div>
+  <div class="reihe uns">
+    <div class="was">RIMA
+      <small>Bis 1.000 Namen, jede Nacht gegen die Gesellschaftsbekanntmachungen. Erster Monat frei, danach monatlich kündbar zum Monatsende, ohne Grund und ohne Rückfrage.</small>
+    </div>
+    <div class="pr">79 €<em> / Monat</em></div>
+  </div>
+</div>
+<p class="q">Warum 79 und nicht 1.000: <strong>weil wir weniger können.</strong> Keine Bonitätsnote, keine Bilanzen, keine Zahlungserfahrungen, kein Portal. Eine einzige Frage, jede Nacht gestellt. Wer eine Auskunftei braucht, ist bei uns falsch. Wer schon eine hat, braucht uns trotzdem, und warum, steht im nächsten Abschnitt.</p>
+
+<h2>Insolvenzlisten zeigen eine Liquidation <span class="grad" style="--g:var(--g-leaf)">nicht</span></h2>
+<p>Dienste, die Ihre Firmenkunden überwachen, gibt es. Wir haben sie durchgesehen, vom Marktführer bis zu den kleinen Anbietern. <strong>Alle überwachen dasselbe: das Insolvenzverfahren.</strong> Einen Dienst, der die Gesellschaftsbekanntmachung nach § 73 GmbHG überwacht, also den Gläubigeraufruf, mit dem das Sperrjahr überhaupt erst beginnt, haben wir nicht gefunden.</p>
+<div class="rollt">
+<table class="stapel">
+  <thead><tr><th>Der Fall</th><th>In Insolvenzlisten</th><th>Bei uns</th></tr></thead><tbody>
+  <tr><td class="h" data-l="Der Fall">Ihr Kunde meldet Insolvenz an</td><td class="g" data-l="In Insolvenzlisten">ja</td><td data-l="Bei uns">ja</td></tr>
+  <tr><td class="h" data-l="Der Fall">Ihr Kunde wird geordnet abgewickelt und löst sich auf</td><td class="g" data-l="In Insolvenzlisten">nein</td><td data-l="Bei uns"><strong>ja</strong></td></tr>
+  <tr><td class="h" data-l="Der Fall">Ihr Kunde bestreitet Ihre Rechnung und liquidiert</td><td class="g" data-l="In Insolvenzlisten">nein</td><td data-l="Bei uns"><strong>ja</strong></td></tr>
+  <tr><td class="h" data-l="Der Fall">Ihr Kunde ist nach dem Sperrjahr gelöscht</td><td class="g" data-l="In Insolvenzlisten">nein</td><td data-l="Bei uns">ja, mit dem Enddatum vorher</td></tr>
+</tbody></table>
+</div>
+<!-- selbstschuss-ok: "einfach auf" heisst hier "schlicht", nicht "leicht" -->
+<p><strong>Eine Liquidation ist keine Insolvenz.</strong> Die meisten dieser Firmen sind zahlungsfähig, sie hören einfach auf. Genau dort verfällt Geld leise: kein Verwalter schreibt Sie an, keine Insolvenzliste zeigt den Fall, und nach dem Sperrjahr ist die Gesellschaft gelöscht. Das ist die Lücke, für die es RIMA gibt, und der Grund, warum 79 Euro im Monat auch dann Sinn ergeben, wenn Sie bereits eine Auskunftei bezahlen.</p>
+<p class="q">Sollten Sie einen Anbieter kennen, der dieselbe Quelle überwacht, schreiben Sie uns. Dann steht dieser Abschnitt hier zu Unrecht und wir nehmen ihn raus.</p>
+
+<h2><span class="grad" style="--g:var(--g-sea)">Liste schicken</span>, Nachricht bekommen, fertig</h2>
+<ol class="schritte">
+  <li><span class="nr"></span><b>Sie schicken Ihre Kundenliste</b><span class="t">Bis 1.000 Namen, einmal. Als Datei oder als Text, wie es Ihnen passt. Auftragsverarbeitungsvertrag liegt vorher vor.</span></li>
+  <li><span class="nr"></span><b>Wir gleichen jede Nacht ab</b><span class="t">Gegen alle neuen Gesellschaftsbekanntmachungen, mit dem Namensabgleich von oben.</span></li>
+  <li><span class="nr"></span><b>Bei einem Treffer kommt eine Nachricht</b><span class="t">Per E-Mail oder WhatsApp, mit Name, Datum der Bekanntmachung und dem Tag, an dem das Sperrjahr endet. Kein Portal, kein Login, kein Passwort.</span></li>
+</ol>
+
+<h2>Drei Namen <span class="grad">kostenlos</span> prüfen lassen</h2>
+<!-- selbstschuss-ok: Nachpruefen UNSERES Ergebnisses, ersetzt uns nicht, sondern belegt uns -->
+<p class="g" style="max-width:42ch">Schicken Sie drei Namen von Firmenkunden. Wir prüfen sie gegen das Archiv und antworten am selben Tag, mit dem Ergebnis und mit dem Link auf die Fundstelle, damit Sie es selbst nachsehen können.</p>
+<div class="tun">
+  <a class="knopf" href="https://wa.me/4915730331937">Drei Namen per WhatsApp</a>
+  <a class="zweit" href="mailto:david@lichters.email?subject=Drei%20Namen%20f%C3%BCr%20den%20Abgleich">oder per E-Mail</a>
+</div>
+<p class="frei">Kostet nichts, verpflichtet zu nichts, und wir sagen Ihnen ab, wenn sich der Preis für Sie nicht trägt.</p>
+
+</div>
+
+<footer>
+  <p class="fz"><b>Anbieterkennzeichnung nach § 5 DDG</b></p>
+  <p class="fz">David Lichters<br>Maurenbrecherstraße 16<br>47803 Krefeld<br>Deutschland</p>
+  <p class="fz">Telefon: <a href="tel:+4915730331937">+49 1573 0331937</a><br>E-Mail: <a href="mailto:david@lichters.email">david@lichters.email</a></p>
+  <p class="fz">Umsatzsteuer: Kleinunternehmer nach § 19 UStG, es wird keine Umsatzsteuer ausgewiesen.</p>
+  <p class="fz">Zahlen auf dieser Seite: Grundquote und Archivstände aus dem eigenen Bestand, Stand 10.09.2026. Trefferquote aus einem Test gegen 300 echte Firmennamen in 1.048 Schreibweisen. Preise anderer Anbieter sind öffentliche Richtwerte, kein Angebot an Sie.</p>
+<!-- selbstschuss-ok: Pflichtangabe zur Datenquelle -->
+  <p class="fz">Datenquelle: Gesellschaftsbekanntmachungen im Bundesanzeiger, öffentlich zugänglich. RIMA ist kein Rechtsdienstleister und erteilt keine Rechtsberatung. Ihre Kundenliste wird ausschließlich für den Abgleich verwendet, nicht weitergegeben und auf Wunsch jederzeit gelöscht.</p>
+</footer>
+
+</div>
+</body>
+</html>
