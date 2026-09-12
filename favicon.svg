@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
   <mask id="biss_zeichen_randlos" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
     <rect width="1024" height="1024" fill="#FFFFFF"/>
-    <circle cx="729.017" cy="443.991" r="102.133" fill="#000000"/>
-    <circle cx="224.402" cy="275.765" r="102.133" fill="#000000"/>
+    <circle cx="729.017" cy="443.991" r="94.367" fill="#000000"/>
+    <circle cx="224.402" cy="275.765" r="94.367" fill="#000000"/>
   </mask>
   <rect x="0.000" y="0.000" width="1024.000" height="1024.000" rx="0.000" fill="#FFFFFF"/>
   <g mask="url(#biss_zeichen_randlos)">
-    <circle cx="512.0" cy="512.0" r="374.636" fill="none" stroke="#808080" stroke-width="56.620"/>
-    <circle cx="512.0" cy="512.0" r="237.238" fill="none" stroke="#808080" stroke-width="56.620"/>
+    <circle cx="512.0" cy="512.0" r="374.636" fill="none" stroke="#808080" stroke-width="62.911"/>
+    <circle cx="512.0" cy="512.0" r="237.238" fill="none" stroke="#808080" stroke-width="62.911"/>
   </g>
   <circle cx="512.0" cy="512.0" r="94.367" fill="#000000"/>
-  <circle cx="224.402" cy="275.765" r="50.326" fill="#000000"/>
-  <circle cx="729.017" cy="443.991" r="50.326" fill="#000000"/>
+  <circle cx="224.402" cy="275.765" r="47.183" fill="#000000"/>
+  <circle cx="729.017" cy="443.991" r="47.183" fill="#000000"/>
 </svg>
