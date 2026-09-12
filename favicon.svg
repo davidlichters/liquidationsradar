@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-  <mask id="b1_zeichen_randlos" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024"><rect width="1024" height="1024" fill="#FFFFFF"/><circle cx="744.593" cy="439.110" r="108.332" fill="#000000"/></mask>
-  <mask id="b2_zeichen_randlos" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024"><rect width="1024" height="1024" fill="#FFFFFF"/><circle cx="226.543" cy="277.523" r="108.332" fill="#000000"/></mask>
+  <mask id="b1_zeichen_randlos" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024"><rect width="1024" height="1024" fill="#FFFFFF"/><circle cx="728.250" cy="444.231" r="118.649" fill="#000000"/></mask>
+  <mask id="b2_zeichen_randlos" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024"><rect width="1024" height="1024" fill="#FFFFFF"/><circle cx="230.529" cy="280.798" r="118.649" fill="#000000"/></mask>
   <rect x="0.000" y="0.000" width="1024.000" height="1024.000" rx="0.000" fill="#FFFFFF"/>
-  <circle cx="512.0" cy="512.0" r="369.412" fill="none" stroke="#808080" stroke-width="54.166" mask="url(#b2_zeichen_randlos)"/>
-  <circle cx="512.0" cy="512.0" r="243.747" fill="none" stroke="#808080" stroke-width="54.166" mask="url(#b1_zeichen_randlos)"/>
-  <circle cx="512.0" cy="512.0" r="108.332" fill="#000000"/>
-  <circle cx="226.543" cy="277.523" r="54.166" fill="#000000"/>
-  <circle cx="744.593" cy="439.110" r="54.166" fill="#000000"/>
+  <circle cx="512.0" cy="512.0" r="364.253" fill="none" stroke="#808080" stroke-width="59.325" mask="url(#b2_zeichen_randlos)"/>
+  <circle cx="512.0" cy="512.0" r="226.620" fill="none" stroke="#808080" stroke-width="59.325" mask="url(#b1_zeichen_randlos)"/>
+  <circle cx="512.0" cy="512.0" r="118.649" fill="#000000"/>
+  <circle cx="230.529" cy="280.798" r="59.325" fill="#000000"/>
+  <circle cx="728.250" cy="444.231" r="59.325" fill="#000000"/>
 </svg>
