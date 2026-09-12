@@ -6,146 +6,125 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="robots" content="index,follow">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex">
+<meta name="description" content="Wie Liquidationsradar mit personenbezogenen Daten umgeht.">
 <title>Datenschutz, Liquidationsradar</title>
 <style>
-:root{
-  --white:#FFFFFF; --ink:#1D1D1F; --grey:#5A5B60; --line:#D2D2D7;
-  --g-sun:linear-gradient(96deg,#FF9F0A 0%,#FF6B2C 45%,#FF375F 100%);
-  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-}
+:root{--white:#FFFFFF;--ink:#1D1D1F;--grey:#5A5B60;--line:#D2D2D7;--blue:#0071E3;
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
 *{box-sizing:border-box;}
 body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sf);
   font-size:19.5px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;}
-.bahn{max-width:680px;margin:0 auto;padding:0 32px;}
-.grad{background-image:var(--g-sun);-webkit-background-clip:text;background-clip:text;
-  color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.06em;}
 .kopf{border-bottom:1px solid var(--line);}
-.kopf .in{max-width:680px;margin:0 auto;padding:18px 32px;display:flex;align-items:baseline;
+.kopf .in{max-width:980px;margin:0 auto;padding:18px 32px;display:flex;align-items:baseline;
   justify-content:space-between;gap:20px;}
-.kopf .wort{font-size:19px;font-weight:700;letter-spacing:-.02em;}
-.kopf a{font-size:15px;color:var(--grey);text-decoration:none;white-space:nowrap;}
-h1{margin:56px 0 28px;font-size:44px;font-weight:700;letter-spacing:-.035em;line-height:1.06;}
-h2{margin:44px 0 12px;font-size:23px;font-weight:600;letter-spacing:-.022em;}
+.kopf .wort{font-size:19px;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--ink);}
+.kopf a.zur{font-size:15px;color:var(--grey);text-decoration:none;white-space:nowrap;}
+.kopf a.zur:hover{color:var(--ink);}
+.bahn{max-width:680px;margin:0 auto;padding:0 32px 96px;}
+h1{margin:56px 0 8px;font-size:40px;font-weight:700;letter-spacing:-.032em;line-height:1.1;}
+h2{margin:48px 0 12px;font-size:24px;font-weight:700;letter-spacing:-.025em;line-height:1.2;}
 p{margin:0 0 16px;}
-a{color:#0071E3;}
-.g{color:var(--grey);}
-.klein{font-size:15.5px;color:var(--grey);}
 ul{margin:0 0 16px;padding-left:22px;}
 li{margin:0 0 8px;}
-footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;}
-footer a{color:var(--grey);text-decoration:none;margin-right:18px;}
-@media(max-width:560px){
+a{color:var(--blue);}
+.stand{color:var(--grey);font-size:16px;margin:0 0 8px;}
+.adr{font-style:normal;line-height:1.6;}
+.klein{font-size:16px;color:var(--grey);line-height:1.6;}
+@media(max-width:520px){
   body{font-size:18px;}
+  h1{font-size:31px;margin-top:40px;}
+  h2{font-size:21px;}
   .bahn,.kopf .in{padding-left:20px;padding-right:20px;}
-  h1{font-size:33px;margin:36px 0 22px;}
-  h2{font-size:20px;}
 }
 </style>
 </head>
 <body>
 <header class="kopf"><div class="in">
-  <div class="wort">Liquidationsradar</div>
-  <a href="/">zurück zur Startseite</a>
+  <a class="wort" href="/">Liquidationsradar</a>
+  <a class="zur" href="/">Zurück zur Startseite</a>
 </div></header>
-<div class="bahn">
-<h1><span class="grad">Datenschutz</span></h1>
+<main class="bahn">
+<h1>Datenschutz</h1>
+<p class="stand">Stand 13.09.2026. Diese Seite beschreibt, was wir tatsächlich tun, und nicht mehr.</p>
 
-<p class="g">Kurz vorweg: diese Seite setzt keine Cookies, misst nichts, lädt
-keine fremden Schriften und bindet keine Werkzeuge anderer Anbieter ein. Was an
-Daten anfällt, steht hier vollständig.</p>
+<h2>Verantwortlicher</h2>
+<address class="adr">
+  David Lichters<br>
+  Maurenbrecherstraße 16<br>
+  47803 Krefeld<br>
+  Deutschland<br>
+  <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a>
+</address>
+<p>Einen Datenschutzbeauftragten müssen wir nicht bestellen und haben wir nicht.</p>
 
-<h2>Verantwortlich</h2>
-<p>David Lichters, Maurenbrecherstraße 16, 47803 Krefeld, Deutschland<br>
-E-Mail: <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a><br>
-Telefon: <a href="tel:+4915730331937">+49 1573 0331937</a></p>
+<h2>Diese Website</h2>
+<p>Die Seite liegt bei GitHub Pages, betrieben von GitHub, Inc., 88 Colin P. Kelly Jr. Street,
+San Francisco, CA 94107, USA. Beim Abruf überträgt Ihr Browser technisch notwendige Daten an
+deren Server, darunter Ihre IP-Adresse, Datum und Uhrzeit, die abgerufene Adresse und die Angaben
+zu Browser und Betriebssystem. Wir haben auf diese Serverprotokolle keinen Zugriff.
+Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse daran, die Seite
+überhaupt ausliefern zu können. GitHub ist nach dem EU-US Data Privacy Framework zertifiziert.</p>
+<p><strong>Diese Seite setzt keine Cookies, misst nichts und bindet nichts von fremden Servern
+ein.</strong> Es gibt kein Analysewerkzeug, keinen Zählpixel, keine Schriftart von einem fremden
+Server und kein Formular. Deshalb sehen Sie hier auch kein Cookie-Fenster.</p>
 
-<h2>Wenn Sie diese Seite aufrufen</h2>
-<p>Die Seite liegt bei GitHub Pages, einem Dienst der GitHub Inc., 88 Colin P.
-Kelly Jr. Street, San Francisco, CA 94107, USA, einem Unternehmen von
-Microsoft. Beim Abruf verarbeitet GitHub technische Zugriffsdaten, darunter Ihre
-IP-Adresse, Datum und Uhrzeit, die aufgerufene Adresse und den Browsertyp. Das
-ist für den Betrieb einer Webseite technisch notwendig.</p>
-<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse
-am sicheren und stabilen Betrieb. Für die Übermittlung in die USA besteht seit
-Juli 2023 ein Angemessenheitsbeschluss der Europäischen Kommission
-(EU-US Data Privacy Framework). Was GitHub dabei speichert, steht in der
-Datenschutzerklärung von GitHub.</p>
-<p><b>Wir selbst erhalten von diesen Zugriffsdaten nichts.</b> Wir führen keine
-eigene Statistik über Besucher.</p>
+<h2>Wenn Sie uns schreiben</h2>
+<p>Schreiben Sie uns per E-Mail, verarbeiten wir Ihre Adresse und den Inhalt Ihrer Nachricht, um
+zu antworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn es um einen Vertrag oder
+dessen Anbahnung geht, sonst Art. 6 Abs. 1 lit. f DSGVO. Schreiben Sie uns über WhatsApp, läuft
+die Nachricht zusätzlich über WhatsApp Ireland Ltd., Merrion Road, Dublin 4, Irland. Wer das nicht
+möchte, erreicht uns per E-Mail oder Telefon.</p>
 
-<h2>Wenn Sie uns schreiben oder anrufen</h2>
-<p>Schreiben Sie uns per E-Mail, verarbeiten wir Ihre Adresse, Ihren Namen und
-den Inhalt Ihrer Nachricht, um sie zu beantworten. Dasselbe gilt für einen
-Anruf oder eine Nachricht über WhatsApp. Rechtsgrundlage ist Art. 6 Abs. 1
-lit. b DSGVO, wenn es um einen Vertrag oder dessen Anbahnung geht, sonst
-Art. 6 Abs. 1 lit. f DSGVO.</p>
-<p>Der Knopf auf der Startseite führt zu WhatsApp, einem Dienst der WhatsApp
-Ireland Limited. Wenn Sie ihn benutzen, fallen dort Verbindungs- und
-Metadaten an, auf die wir keinen Einfluss haben. Sie können uns stattdessen
-jederzeit eine E-Mail schreiben.</p>
-<p>Anfragen bewahren wir auf, solange wir sie für die Beantwortung und für
-Rückfragen brauchen, und löschen sie danach, soweit keine gesetzliche
-Aufbewahrungsfrist entgegensteht.</p>
+<h2>Wenn wir Sie zuerst anschreiben</h2>
+<p>Wir schreiben Betriebe per E-Mail an. Die Adresse stammt aus einer öffentlich zugänglichen
+Quelle, in aller Regel aus dem Impressum Ihrer eigenen Website. Verarbeitet werden Firmenname,
+Ort und die dort veröffentlichte geschäftliche Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f
+DSGVO. Unser Interesse ist es, Betriebe darauf hinzuweisen, dass ein Firmenkunde in Liquidation
+gegangen sein könnte.</p>
+<p><strong>Sie können dem jederzeit widersprechen, formlos und ohne Angabe von Gründen.</strong>
+Eine Antwort mit dem Wort „Stopp“ genügt, oder eine Mail an
+<a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a>. Danach schreiben wir Ihnen nicht wieder an. Wir
+speichern dafür Ihre Adresse in einer Sperrliste, weil wir sonst nicht wissen, wen wir
+auslassen müssen. Rechtsgrundlage dafür ist Art. 6 Abs. 1 lit. c DSGVO.</p>
 
-<h2>Wenn Sie uns eine Kundenliste schicken</h2>
-<p>Für den Abgleich verarbeiten wir die Firmennamen und, soweit Sie sie
-mitschicken, die dazugehörigen Orte und Kundennummern. Wir verwenden diese
-Liste <b>ausschließlich</b> für den Abgleich gegen die Bekanntmachungen im
-Bundesanzeiger. Wir geben sie nicht weiter, verkaufen sie nicht und benutzen
-sie nicht für eigene Werbung.</p>
-<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Auf Ihren Wunsch löschen wir
-die Liste jederzeit, ohne Begründung und ohne Frist, und bestätigen Ihnen die
-Löschung.</p>
+<h2>Ihre Kundenliste</h2>
+<p>Wenn Sie uns Namen von Firmenkunden zum Abgleich schicken, verwenden wir sie ausschließlich
+dafür. Wir geben sie nicht weiter, verkaufen sie nicht und benutzen sie für nichts anderes.
+Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Auf Ihr Wort hin löschen wir sie sofort,
+spätestens wenn die Zusammenarbeit endet.</p>
 
-<h2>Wenn wir Ihnen zuerst geschrieben haben</h2>
-<p>Wir schreiben Unternehmen an, bei denen ein Firmenkunde aus derselben Region
-gerade in Liquidation gegangen ist. Die Adresse stammt dann aus dem
-<b>öffentlich zugänglichen Impressum Ihrer eigenen Unternehmenswebseite</b>, und
-zwar die dort für geschäftliche Kontaktaufnahme angegebene Adresse. Andere
-Quellen benutzen wir nicht, gekaufte Adresslisten benutzen wir nicht.</p>
-<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse
-ist die Ansprache möglicher Geschäftskunden, Ihr Interesse ist der Schutz vor
-unerwünschter Post. Deshalb gilt bei uns: <b>ein Widerspruch genügt, und zwar
-formlos.</b></p>
-<p>Sie haben nach Art. 21 DSGVO jederzeit das Recht, dieser Verarbeitung zu
-widersprechen. Eine Antwort mit dem Wort <b>Stopp</b> reicht. Wir nehmen Ihre
-Adresse dann in eine Sperrliste auf, damit Sie auch künftig keine Nachricht
-mehr von uns bekommen. Diese Sperrliste ist der einzige Zweck, für den wir die
-Adresse danach noch speichern.</p>
-<p class="klein">Diese beiden Absätze sind zugleich die Information nach
-Art. 14 DSGVO über Daten, die wir nicht bei Ihnen selbst erhoben haben.</p>
+<h2>Daten aus dem Bundesanzeiger</h2>
+<p>Wir werten die Gesellschaftsbekanntmachungen im Bundesanzeiger aus. Das sind amtlich
+veröffentlichte Angaben über Gesellschaften. Wo darin Personennamen stehen, etwa von
+Liquidatoren, verarbeiten wir sie auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO in dem Umfang,
+in dem sie bereits öffentlich bekanntgemacht sind.</p>
+
+<h2>Wie lange wir speichern</h2>
+<ul>
+  <li>E-Mail-Verkehr: solange die Sache läuft, danach bis zum Ablauf der handels- und
+      steuerrechtlichen Aufbewahrungsfristen.</li>
+  <li>Kundenlisten zum Abgleich: bis zum Ende der Zusammenarbeit oder bis Sie es sagen.</li>
+  <li>Sperrliste nach einem Widerspruch: dauerhaft, denn sie existiert nur, damit wir Sie
+      in Ruhe lassen.</li>
+</ul>
 
 <h2>Ihre Rechte</h2>
-<ul>
-<li>Auskunft darüber, welche Daten wir über Sie verarbeiten (Art. 15 DSGVO)</li>
-<li>Berichtigung falscher Daten (Art. 16 DSGVO)</li>
-<li>Löschung (Art. 17 DSGVO)</li>
-<li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
-<li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
-<li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen
-(Art. 21 DSGVO)</li>
-</ul>
-<p>Eine E-Mail an
-<a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a>
-genügt für jedes dieser Rechte. Kosten entstehen Ihnen keine.</p>
+<p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17),
+Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch
+(Art. 21 DSGVO). Eine Mail an <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a> genügt, und sie kostet
+Sie nichts.</p>
+<p>Sie können sich außerdem bei einer Aufsichtsbehörde beschweren. Für uns zuständig ist:</p>
+<address class="adr">
+  Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen<br>
+  Kavalleriestraße 2-4<br>
+  40213 Düsseldorf<br>
+  <a href="https://www.ldi.nrw.de">www.ldi.nrw.de</a>
+</address>
 
-<h2>Beschwerde bei der Aufsichtsbehörde</h2>
-<p>Sie können sich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für uns
-zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit
-Nordrhein-Westfalen, Kavalleriestraße 2 bis 4, 40213 Düsseldorf.</p>
-
-<h2>Was es hier nicht gibt</h2>
-<p>Keine Cookies, keine Einwilligungsabfrage, kein Analysewerkzeug, keine
-Schriftarten von fremden Servern, keine eingebetteten Videos, keine
-Werbenetzwerke, kein Newsletter-Werkzeug. Wenn sich das ändert, steht es hier,
-bevor es eingebaut wird.</p>
-
-<p class="klein">Stand: 13. September 2026.</p>
-</div>
-<footer><div class="bahn">
-  <a href="/">Startseite</a><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a>
-</div></footer>
+<p class="klein">Diese Seite wird geändert, sobald sich an der Verarbeitung etwas ändert. Das
+Datum oben sagt, wann sie zuletzt stimmte.</p>
+</main>
 </body>
 </html>

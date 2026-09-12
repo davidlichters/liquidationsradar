@@ -6,62 +6,63 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="robots" content="index,follow">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex">
+<meta name="description" content="Anbieterkennzeichnung von Liquidationsradar nach § 5 DDG.">
 <title>Impressum, Liquidationsradar</title>
 <style>
-:root{
-  --white:#FFFFFF; --ink:#1D1D1F; --grey:#5A5B60; --line:#D2D2D7;
-  --g-sun:linear-gradient(96deg,#FF9F0A 0%,#FF6B2C 45%,#FF375F 100%);
-  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-}
+:root{--white:#FFFFFF;--ink:#1D1D1F;--grey:#5A5B60;--line:#D2D2D7;--blue:#0071E3;
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
 *{box-sizing:border-box;}
 body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sf);
   font-size:19.5px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;}
-.bahn{max-width:680px;margin:0 auto;padding:0 32px;}
-.grad{background-image:var(--g-sun);-webkit-background-clip:text;background-clip:text;
-  color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.06em;}
 .kopf{border-bottom:1px solid var(--line);}
-.kopf .in{max-width:680px;margin:0 auto;padding:18px 32px;display:flex;align-items:baseline;
+.kopf .in{max-width:980px;margin:0 auto;padding:18px 32px;display:flex;align-items:baseline;
   justify-content:space-between;gap:20px;}
-.kopf .wort{font-size:19px;font-weight:700;letter-spacing:-.02em;}
-.kopf a{font-size:15px;color:var(--grey);text-decoration:none;white-space:nowrap;}
-h1{margin:56px 0 28px;font-size:44px;font-weight:700;letter-spacing:-.035em;line-height:1.06;}
-h2{margin:44px 0 12px;font-size:23px;font-weight:600;letter-spacing:-.022em;}
+.kopf .wort{font-size:19px;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--ink);}
+.kopf a.zur{font-size:15px;color:var(--grey);text-decoration:none;white-space:nowrap;}
+.kopf a.zur:hover{color:var(--ink);}
+.bahn{max-width:680px;margin:0 auto;padding:0 32px 96px;}
+h1{margin:56px 0 8px;font-size:40px;font-weight:700;letter-spacing:-.032em;line-height:1.1;}
+h2{margin:48px 0 12px;font-size:24px;font-weight:700;letter-spacing:-.025em;line-height:1.2;}
 p{margin:0 0 16px;}
-a{color:#0071E3;}
-.g{color:var(--grey);}
-.klein{font-size:15.5px;color:var(--grey);}
 ul{margin:0 0 16px;padding-left:22px;}
 li{margin:0 0 8px;}
-footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;}
-footer a{color:var(--grey);text-decoration:none;margin-right:18px;}
-@media(max-width:560px){
+a{color:var(--blue);}
+.stand{color:var(--grey);font-size:16px;margin:0 0 8px;}
+.adr{font-style:normal;line-height:1.6;}
+.klein{font-size:16px;color:var(--grey);line-height:1.6;}
+@media(max-width:520px){
   body{font-size:18px;}
+  h1{font-size:31px;margin-top:40px;}
+  h2{font-size:21px;}
   .bahn,.kopf .in{padding-left:20px;padding-right:20px;}
-  h1{font-size:33px;margin:36px 0 22px;}
-  h2{font-size:20px;}
 }
 </style>
 </head>
 <body>
 <header class="kopf"><div class="in">
-  <div class="wort">Liquidationsradar</div>
-  <a href="/">zurück zur Startseite</a>
+  <a class="wort" href="/">Liquidationsradar</a>
+  <a class="zur" href="/">Zurück zur Startseite</a>
 </div></header>
-<div class="bahn">
-<h1><span class="grad">Impressum</span></h1>
+<main class="bahn">
+<h1>Impressum</h1>
+<p class="stand">Angaben nach § 5 DDG und § 18 Abs. 2 MStV. Stand 13.09.2026.</p>
 
-<h2>Anbieterkennzeichnung nach § 5 DDG</h2>
-<p>David Lichters<br>
-Maurenbrecherstraße 16<br>
-47803 Krefeld<br>
-Deutschland</p>
+<h2>Anbieter</h2>
+<address class="adr">
+  David Lichters<br>
+  Liquidationsradar<br>
+  Maurenbrecherstraße 16<br>
+  47803 Krefeld<br>
+  Deutschland
+</address>
 
 <h2>Kontakt</h2>
-<p>Telefon: <a href="tel:+4915730331937">+49 1573 0331937</a><br>
-E-Mail: <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a></p>
-<p class="klein">Auf E-Mails antworten wir am selben Werktag.</p>
+<p>
+  Telefon: <a href="tel:+4915730331937">+49 1573 0331937</a><br>
+  E-Mail: <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a>
+</p>
 
 <h2>Verantwortlich für den Inhalt</h2>
 <p>David Lichters, Anschrift wie oben.</p>
@@ -69,35 +70,22 @@ E-Mail: <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liqu
 <h2>Umsatzsteuer</h2>
 <p>Kleinunternehmer nach § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen.</p>
 
-<h2>Verbraucherstreitbeilegung</h2>
-<p>Zur Teilnahme an einem Streitbeilegungsverfahren vor einer
-Verbraucherschlichtungsstelle sind wir weder verpflichtet noch bereit.
-Liquidationsradar richtet sich an Unternehmen und nicht an Verbraucher.</p>
-<p class="klein">Die Online-Streitbeilegungsplattform der Europäischen Kommission
-wurde am 20. Juli 2025 abgeschaltet. Ein Link darauf steht hier deshalb
-bewusst nicht.</p>
-
 <h2>Was Liquidationsradar ist und was nicht</h2>
-<p>Liquidationsradar gleicht Ihre Kundenliste gegen die
-Gesellschaftsbekanntmachungen im Bundesanzeiger ab und meldet, wenn ein
-Firmenkunde in Liquidation geht. Die Bekanntmachungen selbst sind öffentlich.
-Unsere Leistung ist der laufende Abgleich gegen Ihre Liste, mit den
-Rechtsformzusätzen und Schreibweisen, die amtlich anders lauten als in Ihrer
-Buchhaltung.</p>
-<p>Liquidationsradar ist <b>kein Rechtsdienstleister</b> und erteilt keine
-Rechtsberatung. Ob und wie Sie eine Forderung anmelden, entscheiden Sie selbst
-oder mit Ihrem Anwalt oder Steuerberater.</p>
+<p>Liquidationsradar wertet die Gesellschaftsbekanntmachungen im Bundesanzeiger aus und meldet,
+wenn eine Firma darin auftaucht, die auf Ihrer Kundenliste steht. Diese Bekanntmachungen sind
+öffentlich und für jeden zugänglich. Bezahlt wird nicht die Quelle, sondern der laufende Abgleich
+gegen Ihre eigene Liste, über die Schreibweisen und Rechtsformzusätze hinweg, die amtlich anders
+lauten als in Ihrer Buchhaltung.</p>
+<p>Liquidationsradar ist kein Rechtsdienstleister im Sinne des RDG und erteilt keine Rechtsberatung.
+Ob und wie Sie eine Forderung anmelden, entscheiden Sie selbst oder mit Ihrem Anwalt.</p>
+
+<h2>Streitbeilegung</h2>
+<p>Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind
+wir nicht verpflichtet und nicht bereit.</p>
 
 <h2>Haftung für Links</h2>
-<p>Diese Seite verweist auf Fundstellen im Bundesanzeiger und auf die Seiten
-anderer Anbieter. Für deren Inhalte ist der jeweilige Anbieter verantwortlich.
-Zum Zeitpunkt der Verlinkung waren dort keine rechtswidrigen Inhalte erkennbar.
-Wenn Ihnen etwas auffällt, schreiben Sie uns, wir nehmen den Link heraus.</p>
-
-<p class="klein">Stand: 13. September 2026.</p>
-</div>
-<footer><div class="bahn">
-  <a href="/">Startseite</a><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a>
-</div></footer>
+<p>Unsere Meldungen verlinken auf die Fundstelle im Bundesanzeiger, damit Sie jede Angabe selbst
+nachsehen können. Für die Inhalte fremder Seiten sind deren Betreiber verantwortlich.</p>
+</main>
 </body>
 </html>
