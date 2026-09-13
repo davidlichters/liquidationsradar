@@ -71,7 +71,7 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
 .karte dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px;}
 .karte dt{color:var(--grey);white-space:nowrap;}
 .karte dd{margin:0;font-variant-numeric:tabular-nums;}
-.karte .fuss{margin:20px 0 0;font-size:14.5px;color:var(--grey);line-height:1.45;}
+.karte .fuss{margin:20px 0 0;font-size:16px;color:var(--grey);line-height:1.45;}
 
 
 /* Kurzfassung: gemessen liest ein Besucher 20 bis 28 Prozent der Woerter und
@@ -114,7 +114,7 @@ td.datum{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
    weil es als EIN Bild gelesen wird. Die Ueberschrift darueber bleibt schwarz. */
 .zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:30px 0 34px;}
 .zahlen .k{background:var(--fill);border-radius:12px;padding:22px 18px 20px;text-align:center;}
-.zahlen .oben{font-size:14px;letter-spacing:.01em;color:var(--grey);margin:0 0 6px;}
+.zahlen .oben{font-size:15.5px;letter-spacing:.01em;color:var(--grey);margin:0 0 6px;}
 .zahlen .z{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:0 0 10px;}
 .zahlen .unten{font-size:15.5px;color:var(--grey);line-height:1.4;margin:0;}
 .zahlen .unten b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
@@ -169,14 +169,16 @@ footer a{color:var(--blue);}
   .stapel,.stapel tbody,.stapel tr,.stapel td{display:block;width:100%;}
   .stapel tr{padding:16px 0;border-bottom:1px solid var(--line);}
   .stapel tbody tr:last-child{border-bottom:0;}
-  .stapel td{border:0;padding:0;display:flex;justify-content:space-between;
-    align-items:baseline;gap:18px;text-align:left;white-space:normal;}
+  /* Lange Werte standen auf dem Label. Deshalb stapelt eine Zelle jetzt
+     grundsaetzlich (Label ueber Wert); nur die kurzen Zahlenzellen .r
+     bleiben die zweispaltige Zeile, fuer die sie gebaut wurden. */
+  .stapel td{border:0;padding:0;text-align:left;white-space:normal;}
   .stapel td + td{margin-top:8px;}
-  .stapel td::before{content:attr(data-l);color:var(--grey);font-size:14.5px;flex:1 1 auto;min-width:0;}
-  .stapel td.h{font-size:20px;font-weight:640;letter-spacing:-.02em;margin-bottom:12px;display:block;}
-  .stapel td.h::before{content:attr(data-l);display:block;font-size:13px;font-weight:400;
-    color:var(--grey);letter-spacing:0;margin-bottom:3px;line-height:1.3;}
-  .stapel td.r{white-space:nowrap;}
+  .stapel td::before{content:attr(data-l);display:block;color:var(--grey);font-size:16px;margin-bottom:2px;}
+  .stapel td.h{font-size:20px;font-weight:640;letter-spacing:-.02em;margin-bottom:12px;}
+  .stapel td.h::before{font-size:15px;font-weight:400;letter-spacing:0;margin-bottom:3px;line-height:1.3;}
+  .stapel td.r{display:flex;justify-content:space-between;align-items:baseline;gap:18px;white-space:nowrap;}
+  .stapel td.r::before{display:inline;flex:1 1 auto;min-width:0;margin-bottom:0;white-space:normal;}
 }
 </style>
 </head>
@@ -194,10 +196,10 @@ footer a{color:var(--blue);}
     <h1>Ihr Firmenkunde wird aufgelöst. Sie erfahren es <span class="grad">nie</span>.</h1>
     <p class="lede">Im Bundesanzeiger heißt Ihr Kunde anders als in Ihrer Buchhaltung. Wir halten Ihre Kundenliste jede Nacht gegen jede neue Bekanntmachung, in jeder Schreibweise. <strong>79 Euro im Monat, bis 1.000 Namen.</strong> Umsatzsteuer fällt nicht an, § 19 UStG, Sie zahlen genau diesen Betrag.</p>
     <div class="tun">
-      <a class="knopf" href="https://wa.me/491737503342">Drei Namen prüfen lassen</a>
+      <a class="knopf" href="https://wa.me/491737503342?text=Guten%20Tag%20Herr%20Lichters%2C%20ich%20komme%20von%20liquidationsradar.de%20und%20h%C3%A4tte%20gern%20diese%20drei%20Firmennamen%20gepr%C3%BCft%3A%0A1.%20%0A2.%20%0A3.%20">Drei Namen prüfen lassen</a>
       <a class="zweit" href="mailto:david.lichters@liquidationsradar.de?subject=Drei%20Namen%20f%C3%BCr%20den%20Abgleich">oder per E-Mail</a>
     </div>
-    <p class="frei">Drei Namen prüfen wir gratis. Schicken Sie die ganze Liste, sehen Sie auch die Fälle der letzten zwölf Monate, ohne Aufpreis.</p>
+    <p class="frei">Drei Namen prüfen wir gratis. Schicken Sie die ganze Liste, sehen Sie auch die Fälle der letzten zwölf Monate, ohne Aufpreis. Die WhatsApp-Nummer ist David Lichters, Krefeld, Anschrift unten.</p>
   </div>
   <div class="karte">
     <p class="zeile">Liquidationsradar · Treffer</p>
@@ -216,26 +218,27 @@ footer a{color:var(--blue);}
 <div class="eng">
 
 <div class="kurz">
-  <p class="kt">In vier Zeilen</p>
+  <p class="kt">In fünf Zeilen</p>
   <ul>
     <li><b>Das Problem.</b> Wird ein Firmenkunde aufgelöst, steht das nur im Bundesanzeiger. Niemand schreibt Sie an, und nach einem Jahr ist die Firma gelöscht.</li>
     <li><b>Was wir tun.</b> Wir gleichen Ihre Kundenliste jede Nacht gegen alle neuen Bekanntmachungen ab, in jeder Schreibweise. Gemessen 91,3 Prozent gefunden, 1,5 Prozent Fehlalarm, gegen alle 33.756 Bekanntmachungen.</li>
+    <li><b>Was nicht dabei ist.</b> Wir lesen die Gesellschaftsbekanntmachungen: freiwillige Auflösungen von GmbH und UG. <strong>Insolvenzen stehen woanders, auf insolvenzbekanntmachungen.de, und sind nicht dabei.</strong> GmbH &amp; Co. KG, AG, GbR und Einzelunternehmer auch nicht, davon stehen in 33.756 Bekanntmachungen ganze zehn. Wie viele Ihrer Namen wir sehen, sagen wir Ihnen vorher.</li>
     <li><b>Was Sie bekommen.</b> Eine Nachricht per E-Mail oder WhatsApp mit Name, Datum und dem Tag, an dem die Frist endet.</li>
     <li><b>Was es kostet.</b> 79 Euro im Monat bis 1.000 Namen, ohne Umsatzsteuer nach § 19 UStG, monatlich kündbar. Beim Start gleichen wir Ihre Liste einmal gegen die letzten zwölf Monate ab, damit Sie sofort sehen, was schon gelaufen ist. Sie bekommen eine Rechnung per E-Mail und überweisen, keine Kartendaten, kein Lastschriftmandat.</li>
   </ul>
 </div>
 
-<h2>Nichts tun kostet im Schnitt <span class="grad" style="--g:var(--g-bloom)">4.839 Euro</span> im Jahr</h2>
+<h2>Nichts tun kostet im Schnitt <span class="grad" style="--g:var(--g-bloom)">4.524 Euro</span> im Jahr</h2>
 <p>Von allen deutschen GmbH und UG haben <strong>rund 2,1 Prozent im Jahr</strong> eine Liquidations-Bekanntmachung. Der Zähler ist unser eigenes Archiv: 31.417 solcher Meldungen in den zwölf Monaten bis zum 11.09.2026. Der Nenner sind rund 1,5 Millionen GmbH einschließlich UG, Stand 1. Januar 2024, erhoben von den Landesjustizverwaltungen und veröffentlicht in der GmbH-Rundschau. Beide Zahlen können Sie nachschlagen.</p>
-<p>Was das für Sie bedeutet, hängt an zwei Zahlen, die Sie kennen: wie viele Firmenkunden Sie haben und wie hoch eine typische offene Rechnung ist. Die Tabelle rechnet mit 60 Firmenkunden und der Annahme, dass bei 30 Prozent der Fälle wirklich etwas offen steht.</p>
+<p>Was das für Sie bedeutet, hängt an zwei Zahlen, die Sie kennen: wie viele Firmenkunden Sie haben und wie hoch eine typische offene Rechnung ist. Die Tabelle rechnet mit 60 Firmenkunden in der Rechtsform GmbH oder UG, also mit den Kunden, die wir sehen können, und mit der Annahme, dass bei 30 Prozent der Fälle wirklich etwas offen steht. Gerechnet wird mit derselben Quote wie oben, 2,09 Prozent, also mit 31.417 geteilt durch 1.500.000.</p>
 <div class="rollt">
 <table class="stapel">
   <thead><tr><th>Ein Firmenkunde kauft typisch für</th><th class="r">Erwarteter Verlust im Jahr</th><th class="r">Wir lohnen uns ab</th></tr></thead>
   <tbody>
-  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">3.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">1.210 Euro</td><td class="r" data-l="Wir lohnen uns ab">48 Firmenkunden</td></tr>
-  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">5.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">2.016 Euro</td><td class="r" data-l="Wir lohnen uns ab">29 Firmenkunden</td></tr>
-  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">8.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">3.226 Euro</td><td class="r" data-l="Wir lohnen uns ab">18 Firmenkunden</td></tr>
-  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">12.000 Euro</td><td class="r" data-l="Ihr Verlust im Jahr">4.839 Euro</td><td class="r" data-l="Wir lohnen uns ab">12 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">3.000 Euro</td><td class="r" data-l="Erwarteter Verlust im Jahr">1.131 Euro</td><td class="r" data-l="Wir lohnen uns ab">51 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">5.000 Euro</td><td class="r" data-l="Erwarteter Verlust im Jahr">1.885 Euro</td><td class="r" data-l="Wir lohnen uns ab">31 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">8.000 Euro</td><td class="r" data-l="Erwarteter Verlust im Jahr">3.016 Euro</td><td class="r" data-l="Wir lohnen uns ab">19 Firmenkunden</td></tr>
+  <tr><td class="h" data-l="Ein Firmenkunde kauft typisch für">12.000 Euro</td><td class="r" data-l="Erwarteter Verlust im Jahr">4.524 Euro</td><td class="r" data-l="Wir lohnen uns ab">13 Firmenkunden</td></tr>
   </tbody>
 </table>
 </div>
@@ -251,7 +254,7 @@ footer a{color:var(--blue);}
   <tr><td>Hirse-Patent-Lizenz-GmbH</td><td class="ort">Neu-Isenburg</td><td class="datum">10.09.2026</td></tr>
 </table>
 </div>
-<p class="g">Vier von 79 an diesem Tag, im Schnitt sind es 120 je Werktag. Ab jeder dieser Meldungen läuft ein Sperrjahr nach § 73 GmbHG. Einzeln benachrichtigt wird niemand.</p>
+<p class="g">Vier von 79 an diesem Tag. Im Schnitt sind es <strong>120 je Werktag</strong>: 31.417 Liquidations-Bekanntmachungen in den zwölf Monaten bis zum 11.09.2026, geteilt durch 261 Werktage. Samstags und sonntags kommt nichts. Ab jeder dieser Meldungen läuft ein Sperrjahr nach § 73 GmbHG. Einzeln benachrichtigt wird niemand.</p>
 <!-- selbstschuss-ok: Absichtlich: wir geben das Nachschlagen zu, um die Ueberwachung abzugrenzen -->
 <p>Einen Namen, den Sie schon haben, finden Sie dort auch ohne uns. Das ist nicht die Aufgabe. Die Aufgabe ist, vorher nicht zu wissen, <strong>welcher</strong> Ihrer Kunden an <strong>welchem</strong> der 365 Tage drinsteht und unter <strong>welcher Schreibweise</strong>. Rückwärts nachschlagen dauert zwei Minuten. Vorwärts überwachen sind 33.756 Meldungen im Jahr gegen Ihre gesamte Kundenliste, jede Nacht.</p>
 <div class="klar">Damit es richtig dasteht, auch wenn es uns das Argument abschwächt: Wer der Gesellschaft als Gläubiger bekannt ist, dessen Betrag muss nach § 73 Abs. 2 GmbHG hinterlegt werden, auch ohne Meldung. Eng wird es für den, den sie nicht kennt, dessen Rechnung sie bestreitet, oder der nach der Löschung noch etwas will und dann eine Nachtragsliquidation über das Gericht braucht. Und praktisch gilt: gemeldet wird nur, wer sich meldet. Wer die Bekanntmachung übersieht, liefert weiter, mahnt weiter und räumt Zahlungsziele ein, einer Gesellschaft, die gerade abgewickelt wird.</div>
@@ -270,8 +273,8 @@ footer a{color:var(--blue);}
     <p class="unten"><b>von 1.499 Schreibweisen</b>ein exakter Namensvergleich findet davon 0</p>
   </div>
   <div class="k">
-    <p class="oben">Jede Nacht</p>
-    <p class="z grad" style="--g:var(--g-sun)">88</p>
+    <p class="oben">Je Werktag</p>
+    <p class="z grad" style="--g:var(--g-sun)">120</p>
     <p class="unten"><b>neue Bekanntmachungen</b>jede gegen jeden Ihrer Namen</p>
   </div>
 </div>
@@ -286,7 +289,7 @@ footer a{color:var(--blue);}
   </div>
   <div>
     <b>Der Nachtlauf</b>
-    <span>Es kommen im Schnitt 125 neue Bekanntmachungen je Werktag, und jede wird gegen jeden Ihrer Namen gehalten, in jeder Schreibweise. Das läuft täglich, nicht einmal im Quartal. Eine Prüfung, die Sie von Hand einmal im Jahr machen, findet den Fall elf Monate zu spät.</span>
+    <span>Es kommen im Schnitt 120 neue Bekanntmachungen je Werktag, und jede wird gegen jeden Ihrer Namen gehalten, in jeder Schreibweise. Das läuft täglich, nicht einmal im Quartal. Eine Prüfung, die Sie von Hand einmal im Jahr machen, findet den Fall elf Monate zu spät.</span>
   </div>
   <div>
     <b>Die Frist</b>
@@ -295,13 +298,13 @@ footer a{color:var(--blue);}
 </div>
 <p class="q">Das ist unsere Seite der Arbeit. Ihre besteht aus einer Liste, die Sie einmal schicken, und einer Nachricht, wenn etwas passiert.</p>
 
-<h2>Eine Auskunftei kostet über 1.000 Euro im Monat. <span class="grad" style="--g:var(--g-bloom)">Wir 79.</span></h2>
+<h2>Überwachung bei einer Auskunftei: <span class="grad" style="--g:var(--g-bloom)">150 Euro</span> im Monat für 60 Firmen. Wir 79 für 1.000.</h2>
 <div class="gegen">
   <div class="reihe">
     <div class="was">Wirtschaftsauskunftei
-      <small>400 bis 740 Euro Mitgliedschaft im Jahr, dazu 12 bis 54 Euro je Auskunft. 1.000 Firmenkunden einmal geprüft sind ab 12.000 Euro im Jahr. Das kann mehr als wir, nämlich Bonität, Bilanzen und Zahlungserfahrungen. Es meldet Ihnen aber nicht, wenn einer Ihrer Kunden aufgelöst wird.</small>
+      <small>Laufende Überwachung 30 Euro je Firma und Jahr. Für die 60 Firmenkunden aus der Rechnung oben sind das 1.800 Euro im Jahr, also 150 im Monat, dazu der Mitgliedsbeitrag. Das kann mehr als wir, nämlich Bonität, Bilanzen und Zahlungserfahrungen. Die Auflösung eines Ihrer Bestandskunden meldet es Ihnen deshalb aber nicht von selbst. Preis aus dem Konditionsblatt einer Handwerkskammer, Stand 2018, netto oder brutto sagt das Blatt nicht. Creditreform selbst veröffentlicht keine Preise.</small>
     </div>
-    <div class="pr">über 1.000 €<em> / Monat</em></div>
+    <div class="pr">rund 150 €<em> / Monat</em></div>
   </div>
   <div class="reihe uns">
     <div class="was">Liquidationsradar
@@ -310,10 +313,10 @@ footer a{color:var(--blue);}
     <div class="pr">79 €<em> / Monat</em></div>
   </div>
 </div>
-<p class="q">Warum 79 und nicht 1.000: <strong>weil wir weniger können.</strong> Keine Bonitätsnote, keine Bilanzen, keine Zahlungserfahrungen, kein Portal. Eine einzige Frage, jede Nacht gestellt. Wer eine Auskunftei braucht, ist bei uns falsch. Wer schon eine hat, braucht uns trotzdem, und warum, steht im nächsten Abschnitt.</p>
+<p class="q">Warum 79 und nicht 150: <strong>weil wir weniger können.</strong> Keine Bonitätsnote, keine Bilanzen, keine Zahlungserfahrungen, kein Portal. Eine einzige Frage, jede Nacht gestellt. Wer eine Auskunftei braucht, ist bei uns falsch. Wer schon eine hat, braucht uns trotzdem, und warum, steht im nächsten Abschnitt.</p>
 
 <h2>Es gibt einen Anbieter, der das <span class="grad" style="--g:var(--g-leaf)">auch meldet</span></h2>
-<p><strong>North Data</strong> hat eine Beobachtungsliste. Sie tragen dort jeden Namen einzeln ein, und wenn eine Handelsregister-Bekanntmachung dazu kommt, bekommen Sie eine Mail. Die Tarife: 100 Namen 700 Euro im Jahr, 500 Namen 1.488 Euro, 2.000 Namen 2.678 Euro.</p>
+<p><strong>North Data</strong> hat eine Beobachtungsliste. Sie tragen dort jeden Namen einzeln ein, und wenn eine Handelsregister-Bekanntmachung dazu kommt, bekommen Sie eine Mail. Die Tarife im Jahresabo, netto: 100 Namen 490 Euro im Jahr, 500 Namen 1.250 Euro, 2.000 Namen 2.250 Euro, jeweils zuzüglich Umsatzsteuer.</p>
 <p>Bei kleinen Listen ist das der günstigere Preis. Verglichen wird hier aber nicht der Preis, sondern die Arbeit, die danach bei Ihnen liegt, und die ist der eigentliche Unterschied.</p>
 <div class="rollt">
 <table class="stapel">
@@ -326,12 +329,12 @@ footer a{color:var(--blue);}
   </tbody>
 </table>
 </div>
-<p class="q">Preise von der Preisseite von North Data, Stand 11.09.2026, brutto mit 19 Prozent Umsatzsteuer gerechnet. Bei uns fällt keine an, § 19 UStG. North Data kann außerdem vieles, was wir nicht können: Bilanzen, Netzwerke, 98 Millionen Firmen in 26 Ländern. Wer ein Rechercheportal sucht, ist dort richtig.</p>
+<p class="q">Preise von der Preisseite von North Data, selbst abgerufen am 13.09.2026, netto. Mit 19 Prozent Umsatzsteuer sind das 583, 1.488 und 2.678 Euro im Jahr; wer vorsteuerabzugsberechtigt ist, zahlt effektiv den Nettobetrag. Bei uns fällt keine Umsatzsteuer an, § 19 UStG. North Data kann außerdem vieles, was wir nicht können: Bilanzen, Netzwerke, 98 Millionen Firmen in 26 Ländern. Wer ein Rechercheportal sucht, ist dort richtig.</p>
 <p><strong>Wer bereit ist, jeden Namen selbst einzutragen und in jeder Schreibweise zu pflegen, fährt dort bei kleinen Listen günstiger.</strong> Genau diese Arbeit ist das, was Sie bei uns bezahlen, und sie ist der Grund, warum ein Treffer bei uns auch dann kommt, wenn der Bundesanzeiger Ihren Kunden anders schreibt als Ihre Buchhaltung.</p>
 
 <h2><span class="grad" style="--g:var(--g-sea)">Liste schicken</span>, Nachricht bekommen, fertig</h2>
 <ol class="schritte">
-  <li><span class="nr"></span><b>Sie schicken Ihre Kundenliste</b><span class="t">Bis 1.000 Namen, einmal. Als Datei oder als Text, wie es Ihnen passt. Auftragsverarbeitungsvertrag liegt vorher vor.</span></li>
+  <li><span class="nr"></span><b>Sie schicken Ihre Kundenliste</b><span class="t">Bis 1.000 Namen, einmal. Als Datei oder als Text, wie es Ihnen passt. Wir ziehen daraus die GmbH und UG heraus und sagen Ihnen, wie viele Ihrer Namen wir überwachen können, bevor Sie zahlen. Auftragsverarbeitungsvertrag liegt vorher vor.</span></li>
   <li><span class="nr"></span><b>Wir gleichen jede Nacht ab</b><span class="t">Gegen alle neuen Gesellschaftsbekanntmachungen, mit dem Namensabgleich von oben.</span></li>
   <li><span class="nr"></span><b>Bei einem Treffer kommt eine Nachricht</b><span class="t">Per E-Mail oder WhatsApp, mit Name, Datum der Bekanntmachung und dem Tag, an dem das Sperrjahr endet. Kein Portal, kein Login, kein Passwort, und nichts, was Sie pflegen müssen.</span></li>
 </ol>
@@ -340,7 +343,7 @@ footer a{color:var(--blue);}
 <!-- selbstschuss-ok: Nachpruefen UNSERES Ergebnisses, ersetzt uns nicht, sondern belegt uns -->
 <p class="g" style="max-width:42ch">Schicken Sie drei Namen von Firmenkunden. Wir prüfen sie gegen das Archiv und antworten am selben Tag, mit dem Ergebnis und mit dem Link auf die Fundstelle, damit Sie es selbst nachsehen können.</p>
 <div class="tun">
-  <a class="knopf" href="https://wa.me/491737503342">Drei Namen per WhatsApp</a>
+  <a class="knopf" href="https://wa.me/491737503342?text=Guten%20Tag%20Herr%20Lichters%2C%20ich%20komme%20von%20liquidationsradar.de%20und%20h%C3%A4tte%20gern%20diese%20drei%20Firmennamen%20gepr%C3%BCft%3A%0A1.%20%0A2.%20%0A3.%20">Drei Namen per WhatsApp an David Lichters</a>
   <a class="zweit" href="mailto:david.lichters@liquidationsradar.de?subject=Drei%20Namen%20f%C3%BCr%20den%20Abgleich">oder per E-Mail</a>
 </div>
 <p class="frei">Kostet nichts, verpflichtet zu nichts, und wir sagen Ihnen ab, wenn sich der Preis für Sie nicht trägt.</p>
@@ -353,7 +356,7 @@ footer a{color:var(--blue);}
   <p class="fz">David Lichters<br>Maurenbrecherstraße 16<br>47803 Krefeld<br>Deutschland</p>
   <p class="fz">WhatsApp: <a href="https://wa.me/491737503342">+49 173 7503342</a><br>E-Mail: <a href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a></p>
   <p class="fz">Umsatzsteuer: Kleinunternehmer nach § 19 UStG, es wird keine Umsatzsteuer ausgewiesen.</p>
-  <p class="fz">Zahlen auf dieser Seite: Grundquote und Archivstände aus dem eigenen Bestand, Stand 11.09.2026. Trefferquote aus einem Test gegen 300 echte Firmennamen in 1.499 Schreibweisen, gehalten gegen den vollen Bestand, gemessen am 13.09.2026. Preise anderer Anbieter sind öffentliche Richtwerte, kein Angebot an Sie.</p>
+  <p class="fz">Zahlen auf dieser Seite: Grundquote und Archivstände aus dem eigenen Bestand, Stand 11.09.2026. Trefferquote aus einem Test gegen 300 echte Firmennamen in 1.499 Schreibweisen, gehalten gegen den vollen Bestand, gemessen am 13.09.2026. Die 120 je Werktag sind 31.417 Liquidations-Bekanntmachungen vom 12.09.2025 bis 11.09.2026 geteilt durch 261 Werktage; dieselbe Zahl und derselbe Nenner gelten überall auf dieser Seite. Preise anderer Anbieter sind öffentliche Richtwerte, kein Angebot an Sie: North Data selbst abgerufen am 13.09.2026, die Auskunfteizahl aus einem Konditionsblatt von 2018.</p>
 <!-- selbstschuss-ok: Pflichtangabe zur Datenquelle -->
   <p class="fz">Datenquelle: Gesellschaftsbekanntmachungen im Bundesanzeiger, öffentlich zugänglich. Liquidationsradar ist kein Rechtsdienstleister und erteilt keine Rechtsberatung. Ihre Kundenliste wird ausschließlich für den Abgleich verwendet, nicht weitergegeben und auf Wunsch jederzeit gelöscht.</p>
 </footer>
