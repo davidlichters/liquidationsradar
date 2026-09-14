@@ -73,6 +73,23 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
 .karte dd{margin:0;font-variant-numeric:tabular-nums;}
 .karte .fuss{margin:20px 0 0;font-size:16px;color:var(--grey);line-height:1.45;}
 
+/* Ortsfeld, eingebaut 14.09.2026. Es ersetzt die IP-Erkennung: die Seite liegt
+   auf GitHub Pages und hat keinen Server, und eine geschaetzte Stadt ist bei
+   50 bis 80 Prozent Trefferquote schlechter als gar keine. Kommt der Besucher
+   ueber einen Link aus unserer Mail, steht der Ort schon im Parameter ?o= und
+   das Feld bleibt verborgen. */
+.ortform{margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);}
+.ortform label{display:block;font-size:14px;color:var(--grey);margin:0 0 8px;}
+.ortzeile{display:flex;gap:8px;}
+.ortform input{flex:1 1 auto;min-width:0;font:inherit;font-size:16px;padding:10px 12px;
+  border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);}
+.ortform input:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:var(--ink);}
+.ortform button{flex:none;font:inherit;font-size:15px;font-weight:600;padding:10px 18px;
+  border:0;border-radius:8px;background:var(--ink);color:var(--white);cursor:pointer;}
+.ortform button:hover{opacity:.86;}
+.orthinweis{margin:10px 0 0;font-size:14px;color:var(--grey);line-height:1.4;}
+.orthinweis.fehlt{color:var(--ink);}
+
 
 /* Kurzfassung: gemessen liest ein Besucher 20 bis 28 Prozent der Woerter und
    entscheidet in den ersten zehn Sekunden. Hier steht das ganze Angebot. */
@@ -202,16 +219,24 @@ footer a{color:var(--blue);}
     <p class="frei">Drei Namen prüfen wir gratis. Schicken Sie die ganze Liste, sehen Sie auch die Fälle der letzten zwölf Monate, ohne Aufpreis. Die WhatsApp-Nummer ist David Lichters, Krefeld, Anschrift unten.</p>
   </div>
   <div class="karte">
-    <p class="zeile">Liquidationsradar · Treffer</p>
-    <p class="firma">Binnewies Unternehmensberatung GmbH</p>
-    <p class="ort">Berlin</p>
-    <dl>
+    <p class="zeile" id="k-zeile">Liquidationsradar · Treffer</p>
+    <p class="firma" id="k-firma">Binnewies Unternehmensberatung GmbH</p>
+    <p class="ort" id="k-ort">Berlin</p>
+    <dl id="k-dl">
       <dt>Vorgang</dt><dd>Auflösung, Gläubigeraufruf</dd>
       <dt>Bekanntgemacht</dt><dd>10.09.2026</dd>
       <dt>Sperrjahr endet</dt><dd>10.09.2027</dd>
       <dt>Ihre Kundennummer</dt><dd>4021</dd>
     </dl>
-    <p class="fuss">So sieht eine Meldung aus. Sie kommt per E-Mail oder WhatsApp, mit Name, Ort, Datum und dem Tag, an dem das Sperrjahr endet.</p>
+    <p class="fuss" id="k-fuss">So sieht eine Meldung aus. Sie kommt per E-Mail oder WhatsApp, mit Name, Ort, Datum und dem Tag, an dem das Sperrjahr endet.</p>
+    <form class="ortform" id="k-form" autocomplete="off">
+      <label for="k-eingabe">Aus welchem Ort kommen Ihre Kunden?</label>
+      <div class="ortzeile">
+        <input id="k-eingabe" name="ort" type="text" placeholder="z. B. Hamm" spellcheck="false" enterkeyhint="go">
+        <button type="submit">Zeigen</button>
+      </div>
+      <p class="orthinweis" id="k-hinweis">Dann steht hier ein echter Fall aus Ihrer Nähe statt des Beispiels oben.</p>
+    </form>
   </div>
 </div>
 
@@ -362,5 +387,106 @@ footer a{color:var(--blue);}
 </footer>
 
 </div>
+<script>
+/* ECHTER FALL AUS DER NAEHE DES BESUCHERS.
+   Gebaut 14.09.2026. Zwei Wege in den Ort, kein dritter:
+     1. ?o=hamm aus dem Link in unserer Kaltmail. Wir kennen den Ort, weil wir
+        wissen, an welche Domain wir geschrieben haben. 100 Prozent genau.
+     2. Der Besucher tippt ihn selbst.
+   KEINE IP-Erkennung. Die Seite liegt auf GitHub Pages und hat keinen Server,
+   also ginge die IP jedes Besuchers an einen fremden Dienst, und die Trefferquote
+   auf Stadtebene liegt bei 50 bis 80 Prozent. Ein Produkt, das mit Genauigkeit
+   wirbt, darf den Ort nicht raten.
+   Die Daten stehen in orte.json, gebaut mit werkzeug/ortsdatei_fuer_seite.mjs,
+   4.242 Orte, jeder Firmenname gegen das Bundesanzeiger-Archiv geprueft. */
+(function () {
+  var karte = {
+    zeile: document.getElementById('k-zeile'),
+    firma: document.getElementById('k-firma'),
+    ort:   document.getElementById('k-ort'),
+    dl:    document.getElementById('k-dl'),
+    fuss:  document.getElementById('k-fuss'),
+    form:  document.getElementById('k-form'),
+    feld:  document.getElementById('k-eingabe'),
+    hinweis: document.getElementById('k-hinweis')
+  };
+  if (!karte.form) return;
+
+  function schluessel(t) {
+    return String(t).toLowerCase()
+      .replace(/\u00e4/g,'ae').replace(/\u00f6/g,'oe').replace(/\u00fc/g,'ue').replace(/\u00df/g,'ss')
+      .replace(/[^a-z0-9]/g,'');
+  }
+
+  /* Sperrjahrende: ein Jahr nach der Bekanntmachung. Faellt der Tag auf ein
+     Wochenende, verschiebt sich nichts, denn § 65 GmbHG knuepft an die
+     Bekanntmachung und nicht an eine Erklaerungsfrist. Die Feinheiten rechnet
+     der Dienst selbst, hier steht nur das Datum, das auch in der Mail steht. */
+  function plusEinJahr(d) {
+    var t = d.split('.');
+    if (t.length !== 3) return null;
+    return t[0] + '.' + t[1] + '.' + (Number(t[2]) + 1);
+  }
+
+  var daten = null, laedt = null;
+  function lade() {
+    if (daten) return Promise.resolve(daten);
+    if (laedt) return laedt;
+    laedt = fetch('orte.json').then(function (r) { return r.json(); })
+      .then(function (j) { daten = j.orte || {}; return daten; })
+      .catch(function () { daten = {}; return daten; });
+    return laedt;
+  }
+
+  function zeige(eintrag) {
+    var f = eintrag.faelle[0];
+    karte.zeile.textContent = 'Liquidationsradar \u00b7 ' + eintrag.anzahl
+      + ' Treffer im ' + eintrag.km + ' km Umkreis von ' + eintrag.ort;
+    karte.firma.textContent = f.n;
+    karte.ort.textContent = f.o;
+    var ende = plusEinJahr(f.d);
+    karte.dl.innerHTML =
+      '<dt>Vorgang</dt><dd>Aufl\u00f6sung, Gl\u00e4ubigeraufruf</dd>' +
+      '<dt>Bekanntgemacht</dt><dd>' + f.d + '</dd>' +
+      (ende ? '<dt>Sperrjahr endet</dt><dd>' + ende + '</dd>' : '') +
+      '<dt>Fristen im Umkreis</dt><dd>' + eintrag.fristen + ' in den n\u00e4chsten 30 Tagen</dd>';
+    /* Kein "Ihre Kundennummer" mehr, sobald echte Daten stehen. Das Feld wuerde
+       suggerieren, der Besucher sei schon Kunde und diese Firma sei SEIN Kunde.
+       Beides waere falsch, und genau diese Sorte Satz kostet uns den Empfaenger. */
+    karte.fuss.textContent = 'Das ist eine echte Bekanntmachung aus den letzten '
+      + eintrag.tage + ' Tagen, keine Musterkarte. Ob eine dieser ' + eintrag.anzahl
+      + ' Firmen Ihr Kunde ist, wissen nur Sie. Genau das nehmen wir Ihnen ab.';
+    karte.form.hidden = true;
+  }
+
+  function such(text) {
+    var k = schluessel(text);
+    if (!k) return;
+    karte.hinweis.textContent = 'Suche \u2026';
+    karte.hinweis.className = 'orthinweis';
+    lade().then(function (d) {
+      var e = d[k];
+      if (e) { zeige(e); return; }
+      karte.hinweis.textContent = 'Zu \u201e' + text + '\u201c liegt hier nichts vor. '
+        + 'Schreiben Sie mir den Ort, dann sehe ich im vollen Archiv nach.';
+      karte.hinweis.className = 'orthinweis fehlt';
+    });
+  }
+
+  karte.form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    such(karte.feld.value.trim());
+  });
+
+  var p = new URLSearchParams(location.search).get('o');
+  if (p) {
+    karte.form.hidden = true;
+    lade().then(function (d) {
+      var e = d[schluessel(p)];
+      if (e) zeige(e); else karte.form.hidden = false;
+    });
+  }
+})();
+</script>
 </body>
 </html>
