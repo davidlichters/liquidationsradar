@@ -80,6 +80,27 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
    Schrift im Browser groesser, waechst das Bild mit. Breite folgt dem
    Seitenverhaeltnis, deshalb width:auto statt einer festen Zahl. */
 .tiktok img{display:block;height:4em;width:auto;max-width:100%;}
+/* Die Beispielmeldung. Als HTML, nicht als Bildschirmfoto: auf einem 375er
+   Handy waere ein 1100 px breites Foto auf 331 px gequetscht, der Mailtext
+   waere 7 px hoch und damit Dekoration statt Beleg. Gemessen 15.09.2026. */
+.meldung{margin:22px 0 26px;padding:0;max-width:520px;}
+.meldung .rahmen{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--white);}
+.meldung .kopf{padding:13px 16px;border-bottom:1px solid var(--line);background:var(--fill);font-size:.8em;line-height:1.5;color:var(--grey);}
+.meldung .kopf b{color:var(--ink);font-weight:600;}
+.meldung .betreff{padding:14px 16px 0;font-weight:700;letter-spacing:-.01em;}
+.meldung .leib{padding:10px 16px 20px;font-size:.94em;line-height:1.6;}
+.meldung .leib p{margin:0 0 16px;}
+.meldung .eyebrow{font-size:.78em;letter-spacing:.1em;text-transform:uppercase;color:#B5341A;margin:0 0 4px;}
+.meldung .firma{font-size:1.25em;font-weight:700;letter-spacing:-.015em;margin:0 0 2px;}
+.meldung .ort{color:var(--grey);font-size:.9em;margin:0 0 16px;}
+.meldung table{border-collapse:collapse;width:100%;margin:0 0 16px;}
+.meldung td{padding:0 12px 6px 0;vertical-align:top;}
+.meldung td.l{color:var(--grey);white-space:nowrap;}
+.meldung .treffer td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);}
+.meldung .treffer td:last-child{padding-right:0;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.meldung .klein{color:var(--grey);font-size:.88em;}
+.meldung .fussz{margin:0;padding-top:14px;border-top:1px solid var(--line);color:var(--grey);font-size:.85em;}
+.meldung figcaption{margin:9px 0 0;font-size:.82em;line-height:1.5;color:var(--grey);}
 
 /* AUFKLAPPTEIL, 14.09.2026. Wer hier landet, hat die Kaltmail schon gelesen:
    das Problem kennt er, er prueft jetzt, wer wir sind und was es kostet.
@@ -303,8 +324,45 @@ footer a{color:var(--blue);}
   <li><span class="nr"></span><b>Bei einem Treffer kommt eine Nachricht</b><span class="t">Per E-Mail oder WhatsApp, mit Name, Datum der Bekanntmachung und dem Tag, an dem das Sperrjahr endet. Kein Portal, kein Login, kein Passwort, und nichts, was Sie pflegen müssen.</span></li>
 </ol>
 
+<figure class="meldung">
+  <div class="rahmen">
+    <div class="kopf"><b>Liquidationsradar</b> &nbsp;david.lichters@liquidationsradar.de<br>
+      an mich &nbsp;·&nbsp; 12. September 2026, 06:29</div>
+    <p class="betreff">B&amp;K Bildung und Karriere GmbH ist aufgelöst, Ihr Posten 4.180,00 EUR</p>
+    <div class="leib">
+      <p>Guten Tag,</p>
+      <p class="eyebrow">Dritter Treffer in diesem Jahr</p>
+      <p class="firma">B&amp;K Bildung und Karriere GmbH</p>
+      <p class="ort">Krefeld</p>
+      <table>
+        <tr><td class="l">Bekanntgemacht</td><td>gestern um 14:05, Sie lesen es 16 Stunden später</td></tr>
+        <tr><td class="l">Ihr Posten</td><td><strong>4.180,00 EUR</strong> <span class="klein">Rechnung 2026-0412</span></td></tr>
+        <tr><td class="l">Ihre Frist</td><td><strong><u>11. September 2027</u></strong></td></tr>
+      </table>
+      <p>In Ihrer Liste steht <em>B&amp;K Bildung u. Karriere</em>. Amtlich heißt sie anders.
+         Eine Suche nach Ihrer Schreibweise findet nichts.</p>
+      <p class="eyebrow" style="color:var(--grey)">Ihre Treffer 2026</p>
+      <table class="treffer">
+        <tr><td class="l">29.01.</td><td>Naturstein Schütz Verwaltungs GmbH</td><td>6.170,00</td></tr>
+        <tr><td class="l">08.09.</td><td>dreva-konzept GmbH, Tönisvorst</td><td>890,00</td></tr>
+        <tr><td class="l">11.09.</td><td><strong>B&amp;K Bildung und Karriere GmbH</strong></td><td><strong>4.180,00</strong></td></tr>
+        <tr><td colspan="2" style="border:0;padding-top:10px;font-weight:700">Zusammen</td>
+            <td style="border:0;padding-top:10px;font-weight:700">11.240,00&nbsp;EUR</td></tr>
+      </table>
+      <p class="klein">Bei 340 Namen sind drei Treffer im Jahr unauffällig. Auffällig wären acht.</p>
+      <p><strong>Erster Schritt:</strong> Einschreiben an den Liquidator, mit Rechnungsnummer
+         und Betrag. Danach ist die Frist gewahrt.</p>
+      <p class="klein">Heute Nacht geprüft: 340 Namen, 1.499 Schreibweisen, 0 Fehlalarme bei bisher 500 Meldungen.</p>
+      <p class="fussz">Liquidationsradar<br>david.lichters@liquidationsradar.de</p>
+    </div>
+  </div>
+  <figcaption>Beispielmeldung. Die Firmen und Daten stammen aus dem Bundesanzeiger,
+  die Beträge sind exemplarisch.</figcaption>
+</figure>
+
 <h2>Unterstützt von <span class="grad" style="--g:var(--g-sea)">17.200 Fans</span></h2>
 <figure class="tiktok">
+  <!-- alter-ok: Zahlenausschnitt aus dem Profil, Followerzahl und Likes, kein Gesicht und keine Person zu sehen -->
   <img src="tiktok-profil.jpg" width="425" height="125" alt="17,2 Tausend Follower und 1,1 Millionen Likes auf TikTok" loading="lazy" decoding="async">
 </figure>
 
@@ -354,6 +412,7 @@ footer a{color:var(--blue);}
 
 <h2>95,8 Prozent Trefferquote gegen den ganzen Bestand</h2>
 <p>Das Ergebnis ist eine Nachricht mit einem Namen und einem Datum. Bis die stimmt, liegen vier Probleme dazwischen, an denen ein selbstgebauter Abgleich reihenweise scheitert.</p>
+
 <div class="zahlen">
   <div class="k">
     <p class="oben">Im Archiv</p>
@@ -391,7 +450,7 @@ footer a{color:var(--blue);}
 </div>
 <p class="q">Das ist unsere Seite der Arbeit. Ihre besteht aus einer Liste, die Sie einmal schicken, und einer Nachricht, wenn etwas passiert.</p>
 
-<h2>Eine Auskunftei nimmt <span class="grad" style="--g:var(--g-bloom)">30 Euro je Firma</span> und Jahr. Bei uns sind es 95 Cent.</h2>
+<h2>Eine Auskunftei nimmt <span class="grad" style="--g:var(--g-bloom)">30 Euro</span> je Firma und Jahr. Bei uns sind es 95 Cent.</h2>
 <div class="gegen">
   <div class="reihe">
     <div class="was">Wirtschaftsauskunftei
@@ -409,7 +468,7 @@ footer a{color:var(--blue);}
 <p class="q"><strong>So gerechnet:</strong> 30 Euro je Firma und Jahr sind für 60 Firmenkunden 1.800 Euro im Jahr, also 150 im Monat. Bei uns sind 79 Euro im Monat 948 im Jahr, und dafür sind bis zu 1.000 Namen drin: 948 geteilt durch 1.000 sind 95 Cent je Firma und Jahr.</p>
 <p class="q">Warum 79 und nicht 150: <strong>weil wir weniger können.</strong> Keine Bonitätsnote, keine Bilanzen, keine Zahlungserfahrungen, kein Portal. Eine einzige Frage, jede Nacht gestellt. Wer eine Auskunftei braucht, ist bei uns falsch. Wer schon eine hat, braucht uns trotzdem, und warum, steht im nächsten Abschnitt.</p>
 
-<h2>Die Arbeit, die <span class="grad" style="--g:var(--g-leaf)">sonst bei Ihnen liegt</span></h2>
+<h2>Die Arbeit, die sonst <span class="grad" style="--g:var(--g-leaf)">bei Ihnen liegt</span></h2>
 <p>Die Bekanntmachungen sind öffentlich. Wer sie selbst gegen seine Kundenliste hält, hat vier Aufgaben, und alle vier bleiben, solange er Kunden hat.</p>
 <div class="rollt">
 <table class="stapel">
