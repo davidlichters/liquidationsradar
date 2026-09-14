@@ -76,6 +76,20 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
 .oeff .z span{font-size:14px;color:var(--grey);}
 .oeff p{margin:0;font-size:16px;line-height:1.45;max-width:52ch;}
 .oeff .woher{margin-top:10px;font-size:13.5px;color:var(--grey);}
+
+/* AUFKLAPPTEIL, 14.09.2026. Wer hier landet, hat die Kaltmail schon gelesen:
+   das Problem kennt er, er prueft jetzt, wer wir sind und was es kostet.
+   Die vier Abschnitte mit Risiko, Quelle, Trefferquote und Preisvergleich
+   beantworten Fragen, die er erst spaeter stellt. Sie stehen deshalb hinter
+   dem Knopf statt davor. Geloescht ist nichts. */
+.tiefer{margin:32px 0 0;border-top:1px solid var(--line);}
+.tiefer > summary{list-style:none;cursor:pointer;padding:18px 0 0;
+  font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey);}
+.tiefer > summary::-webkit-details-marker{display:none;}
+.tiefer > summary::after{content:" +";font-weight:400;}
+.tiefer[open] > summary::after{content:" −";}
+.tiefer > summary:hover{color:var(--ink);}
+.tiefer-inhalt{padding-top:4px;}
 .karte{background:var(--fill);border-radius:12px;padding:26px 24px;}
 .karte .zeile{font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
   text-transform:uppercase;margin:0 0 18px;}
@@ -266,6 +280,37 @@ footer a{color:var(--blue);}
   </ul>
 </div>
 
+<h2><span class="grad" style="--g:var(--g-sea)">Liste schicken</span>, Nachricht bekommen, fertig</h2>
+<ol class="schritte">
+  <li><span class="nr"></span><b>Sie schicken Ihre Kundenliste</b><span class="t">Bis 1.000 Namen, einmal. Als Datei oder als Text, wie es Ihnen passt. Wir ziehen daraus die GmbH und UG heraus und sagen Ihnen, wie viele Ihrer Namen wir überwachen können, bevor Sie zahlen. Auftragsverarbeitungsvertrag liegt vorher vor.</span></li>
+  <li><span class="nr"></span><b>Wir gleichen jede Nacht ab</b><span class="t">Gegen alle neuen Gesellschaftsbekanntmachungen, mit dem Namensabgleich von oben.</span></li>
+  <li><span class="nr"></span><b>Bei einem Treffer kommt eine Nachricht</b><span class="t">Per E-Mail oder WhatsApp, mit Name, Datum der Bekanntmachung und dem Tag, an dem das Sperrjahr endet. Kein Portal, kein Login, kein Passwort, und nichts, was Sie pflegen müssen.</span></li>
+</ol>
+
+<h2>Unterstützt von <span class="grad" style="--g:var(--g-sea)">17.200 Fans</span></h2>
+<div class="oeff">
+  <div class="zahlen">
+    <div class="z"><b>17.200</b><span>folgen auf TikTok</span></div>
+    <div class="z"><b>1,1 Mio.</b><span>Likes auf die Videos</span></div>
+    <div class="z"><b>33.756</b><span>Bekanntmachungen im Archiv</span></div>
+  </div>
+  <p>Seit dem ersten Video über Liquidationsradar folgen 17.200 Menschen, und die Videos haben 1,1 Millionen Likes. <strong>Wer öffentlich baut, verschwindet nicht still.</strong></p>
+  <p class="woher">Profilstand des Kontos @davidlichters, abgerufen am 14.09.2026.</p>
+</div>
+
+<h2>Drei Namen <span class="grad">kostenlos</span> prüfen lassen</h2>
+<!-- selbstschuss-ok: Nachpruefen UNSERES Ergebnisses, ersetzt uns nicht, sondern belegt uns -->
+<p class="g" style="max-width:42ch">Schicken Sie drei Namen von Firmenkunden. Wir prüfen sie gegen das Archiv und antworten am selben Tag, mit dem Ergebnis und mit Name, Ort und Veröffentlichungsdatum, damit Sie es im Bundesanzeiger selbst nachschlagen können. Einen Link auf die einzelne Bekanntmachung gibt es dort nicht: der Bundesanzeiger lässt seine Adressen nach dreißig Minuten ablaufen.</p>
+<div class="tun">
+  <a class="knopf" href="https://wa.me/491737503342?text=Guten%20Tag%20Herr%20Lichters%2C%20ich%20komme%20von%20liquidationsradar.de%20und%20h%C3%A4tte%20gern%20diese%20drei%20Firmennamen%20gepr%C3%BCft%3A%0A1.%20%0A2.%20%0A3.%20">Drei Namen per WhatsApp an David Lichters</a>
+  <a class="zweit" href="mailto:david.lichters@liquidationsradar.de?subject=Drei%20Namen%20f%C3%BCr%20den%20Abgleich">oder per E-Mail</a>
+</div>
+<p class="frei">Kostet nichts, verpflichtet zu nichts, und wir sagen Ihnen ab, wenn sich der Preis für Sie nicht trägt.</p>
+
+<details class="tiefer">
+  <summary>Die Zahlen dahinter: Risiko, Quelle, Trefferquote, Preisvergleich</summary>
+  <div class="tiefer-inhalt">
+
 <h2>Nichts tun kostet im Schnitt <span class="grad" style="--g:var(--g-bloom)">4.524 Euro</span> im Jahr</h2>
 <p>Von allen deutschen GmbH und UG haben <strong>rund 2,1 Prozent im Jahr</strong> eine Liquidations-Bekanntmachung. Der Zähler ist unser eigenes Archiv: 31.417 solcher Meldungen in den zwölf Monaten bis zum 11.09.2026. Der Nenner sind rund 1,5 Millionen GmbH einschließlich UG, Stand 1. Januar 2024, erhoben von den Landesjustizverwaltungen und veröffentlicht in der GmbH-Rundschau. Beide Zahlen können Sie nachschlagen.</p>
 <p>Was das für Sie bedeutet, hängt an zwei Zahlen, die Sie kennen: wie viele Firmenkunden Sie haben und wie hoch eine typische offene Rechnung ist. Die Tabelle rechnet mit 60 Firmenkunden in der Rechtsform GmbH oder UG, also mit den Kunden, die wir sehen können, und mit der Annahme, dass bei 30 Prozent der Fälle wirklich etwas offen steht. Gerechnet wird mit derselben Quote wie oben, 2,09 Prozent, also mit 31.417 geteilt durch 1.500.000.</p>
@@ -369,32 +414,10 @@ footer a{color:var(--blue);}
 </div>
 <p class="q">Genau diese vier Sachen sind das, was Sie bei uns bezahlen. Sie sind der Grund, warum ein Treffer bei uns auch dann kommt, wenn der Bundesanzeiger Ihren Kunden anders schreibt als Ihre Buchhaltung.</p>
 
-<h2><span class="grad" style="--g:var(--g-sea)">Liste schicken</span>, Nachricht bekommen, fertig</h2>
-<ol class="schritte">
-  <li><span class="nr"></span><b>Sie schicken Ihre Kundenliste</b><span class="t">Bis 1.000 Namen, einmal. Als Datei oder als Text, wie es Ihnen passt. Wir ziehen daraus die GmbH und UG heraus und sagen Ihnen, wie viele Ihrer Namen wir überwachen können, bevor Sie zahlen. Auftragsverarbeitungsvertrag liegt vorher vor.</span></li>
-  <li><span class="nr"></span><b>Wir gleichen jede Nacht ab</b><span class="t">Gegen alle neuen Gesellschaftsbekanntmachungen, mit dem Namensabgleich von oben.</span></li>
-  <li><span class="nr"></span><b>Bei einem Treffer kommt eine Nachricht</b><span class="t">Per E-Mail oder WhatsApp, mit Name, Datum der Bekanntmachung und dem Tag, an dem das Sperrjahr endet. Kein Portal, kein Login, kein Passwort, und nichts, was Sie pflegen müssen.</span></li>
-</ol>
 
-<h2>Unterstützt von <span class="grad" style="--g:var(--g-sea)">17.200 Fans</span></h2>
-<div class="oeff">
-  <div class="zahlen">
-    <div class="z"><b>17.200</b><span>folgen auf TikTok</span></div>
-    <div class="z"><b>1,1 Mio.</b><span>Likes auf die Videos</span></div>
-    <div class="z"><b>33.756</b><span>Bekanntmachungen im Archiv</span></div>
   </div>
-  <p>Seit dem ersten Video über Liquidationsradar folgen 17.200 Menschen, und die Videos haben 1,1 Millionen Likes. <strong>Wer öffentlich baut, verschwindet nicht still.</strong></p>
-  <p class="woher">Profilstand des Kontos @davidlichters, abgerufen am 14.09.2026.</p>
-</div>
+</details>
 
-<h2>Drei Namen <span class="grad">kostenlos</span> prüfen lassen</h2>
-<!-- selbstschuss-ok: Nachpruefen UNSERES Ergebnisses, ersetzt uns nicht, sondern belegt uns -->
-<p class="g" style="max-width:42ch">Schicken Sie drei Namen von Firmenkunden. Wir prüfen sie gegen das Archiv und antworten am selben Tag, mit dem Ergebnis und mit Name, Ort und Veröffentlichungsdatum, damit Sie es im Bundesanzeiger selbst nachschlagen können. Einen Link auf die einzelne Bekanntmachung gibt es dort nicht: der Bundesanzeiger lässt seine Adressen nach dreißig Minuten ablaufen.</p>
-<div class="tun">
-  <a class="knopf" href="https://wa.me/491737503342?text=Guten%20Tag%20Herr%20Lichters%2C%20ich%20komme%20von%20liquidationsradar.de%20und%20h%C3%A4tte%20gern%20diese%20drei%20Firmennamen%20gepr%C3%BCft%3A%0A1.%20%0A2.%20%0A3.%20">Drei Namen per WhatsApp an David Lichters</a>
-  <a class="zweit" href="mailto:david.lichters@liquidationsradar.de?subject=Drei%20Namen%20f%C3%BCr%20den%20Abgleich">oder per E-Mail</a>
-</div>
-<p class="frei">Kostet nichts, verpflichtet zu nichts, und wir sagen Ihnen ab, wenn sich der Preis für Sie nicht trägt.</p>
 
 </div>
 
