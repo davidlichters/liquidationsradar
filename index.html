@@ -105,6 +105,17 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
    50 bis 80 Prozent Trefferquote schlechter als gar keine. Kommt der Besucher
    ueber einen Link aus unserer Mail, steht der Ort schon im Parameter ?o= und
    das Feld bleibt verborgen. */
+
+/* DIE ORTSSUMME, 14.09.2026, Davids Entscheidung und sein Wortlaut.
+   Der Satz steht im Konjunktiv und nennt beide Nenner, die Zahl der Firmen und
+   die der Glaeubiger. Ein Leser, der 550.000 durch 425 teilt, kommt auf 1.295
+   und hat damit dieselbe Zahl, die auch in unserer eigenen Schaetzung steht.
+   Genau deshalb traegt der Satz: er haelt dem Nachrechnen stand. */
+.gerettet{margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);
+  font-size:16px;line-height:1.45;}
+.gerettet b{font-size:21px;font-weight:660;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;display:block;margin-bottom:4px;}
+.gerettet small{display:block;margin-top:8px;font-size:13.5px;color:var(--grey);line-height:1.4;}
 .ortform{margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);}
 .ortform label{display:block;font-size:14px;color:var(--grey);margin:0 0 8px;}
 .ortzeile{display:flex;gap:8px;}
@@ -256,6 +267,7 @@ footer a{color:var(--blue);}
       <dt>Ihre Kundennummer</dt><dd>4021</dd>
     </dl>
     <p class="fuss" id="k-fuss">So sieht eine Meldung aus. Sie kommt per E-Mail oder WhatsApp, mit Name, Ort, Datum und dem Tag, an dem das Sperrjahr endet.</p>
+    <p class="gerettet" id="k-gerettet" hidden></p>
     <form class="ortform" id="k-form" autocomplete="off">
       <label for="k-eingabe">Aus welchem Ort kommen Ihre Kunden?</label>
       <div class="ortzeile">
@@ -452,6 +464,7 @@ footer a{color:var(--blue);}
     ort:   document.getElementById('k-ort'),
     dl:    document.getElementById('k-dl'),
     fuss:  document.getElementById('k-fuss'),
+    gerettet: document.getElementById('k-gerettet'),
     form:  document.getElementById('k-form'),
     feld:  document.getElementById('k-eingabe'),
     hinweis: document.getElementById('k-hinweis')
@@ -499,6 +512,27 @@ footer a{color:var(--blue);}
     /* Kein "Ihre Kundennummer" mehr, sobald echte Daten stehen. Das Feld wuerde
        suggerieren, der Besucher sei schon Kunde und diese Firma sei SEIN Kunde.
        Beides waere falsch, und genau diese Sorte Satz kostet uns den Empfaenger. */
+    /* SUMME JE ORT. 32.363 EUR je Liquidation ist eine SCHAETZUNG, hergeleitet
+       in werkzeug/liquidationssumme_schaetzen.mjs: Umsatz einer Kleinst-
+       gesellschaft nach § 267a HGB, davon Wareneinsatz, davon 30 Tage
+       Zahlungsziel, plus Gewaehrleistung und Einbehalte. Rund 25 Glaeubiger
+       je Firma. Beide Zahlen stehen im Kleingedruckten, damit jeder
+       nachrechnen kann. */
+    const JE_FALL = 32363, JE_FIRMA_GLAEUBIGER = 25;
+    const summe = eintrag.anzahl * JE_FALL;
+    const glaeubiger = eintrag.anzahl * JE_FIRMA_GLAEUBIGER;
+    const eur = n => Math.round(n).toLocaleString('de-DE');
+    karte.gerettet.innerHTML =
+      '<b>' + eur(summe) + ' Euro</b>' +
+      'stehen bei diesen ' + eintrag.anzahl + ' Firmen offen. W\u00e4ren die rund '
+      + eur(glaeubiger) + ' betroffenen Gl\u00e4ubiger unsere Kunden, h\u00e4tten wir allein um '
+      + eintrag.ort + ' ' + eur(summe) + ' Euro gerettet.' +
+      '<small>Gesch\u00e4tzt: ' + eur(JE_FALL) + ' Euro offene Verbindlichkeiten je aufgel\u00f6ster Gesellschaft, '
+      + JE_FIRMA_GLAEUBIGER + ' Gl\u00e4ubiger je Firma, also rund ' + eur(summe/glaeubiger)
+      + ' Euro auf einen einzelnen Betrieb. Hergeleitet aus den Gr\u00f6\u00dfenklassen des § 267a HGB, '
+      + 'nicht gemessen. Die Zahl der Firmen ist gemessen.</small>';
+    karte.gerettet.hidden = false;
+
     karte.fuss.textContent = 'Das ist eine echte Bekanntmachung aus den letzten '
       + eintrag.tage + ' Tagen, keine Musterkarte. Ob eine dieser ' + eintrag.anzahl
       + ' Firmen Ihr Kunde ist, wissen nur Sie. Genau das nehmen wir Ihnen ab.';
