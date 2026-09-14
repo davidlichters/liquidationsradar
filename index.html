@@ -74,7 +74,12 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
    Bild mit feiner Kante auf weissem Grund. Der Screenshot ist der Beleg,
    jede Nacherzaehlung daneben waere schwaecher als das Bild selbst. */
 .tiktok{margin:14px 0 0;padding:0;}
-.tiktok img{display:block;width:100%;max-width:340px;height:auto;border-radius:12px;}
+/* Hoehe an die Schrift gebunden, nicht an den Bildschirm: 4em sind immer
+   viermal die Schriftgroesse des Fliesstextes, also 78 px auf dem Rechner und
+   74 px auf dem Telefon, wo der Koerper auf 18,5 px faellt. Stellt jemand die
+   Schrift im Browser groesser, waechst das Bild mit. Breite folgt dem
+   Seitenverhaeltnis, deshalb width:auto statt einer festen Zahl. */
+.tiktok img{display:block;height:4em;width:auto;max-width:100%;}
 
 /* AUFKLAPPTEIL, 14.09.2026. Wer hier landet, hat die Kaltmail schon gelesen:
    das Problem kennt er, er prueft jetzt, wer wir sind und was es kostet.
