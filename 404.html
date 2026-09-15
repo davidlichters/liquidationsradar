@@ -29,12 +29,13 @@
      doch in der Adresszeile, und der ganze Umbau waere Kosmetik gewesen. Ort
      und Fassung gehen deshalb durch sessionStorage, das Ziel ist die nackte
      Startseite.
-  2. Zaehlen mit dem normalen GoatCounter-Skript. Das schickt seinen Zaehl-
-     aufruf beim Laden los, und `location.replace` bricht laufende Anfragen
-     ab. Ein Teil der Klicks waere lautlos verschwunden, und zwar der
-     schnellere Teil, also die guten Verbindungen. Stattdessen geht der Aufruf
-     direkt an den count-Endpunkt mit `keepalive: true`: der Browser stellt
-     ihn auch dann noch zu, wenn die Seite schon weg ist.
+  2. Zaehlen und im selben Atemzug weiterleiten. `location.replace` bricht
+     laufende Anfragen ab, und `keepalive: true` hat auf der Liveseite nicht
+     zuverlaessig gereicht. Ein Teil der Klicks waere lautlos verschwunden,
+     und zwar der schnellere Teil, also die guten Verbindungen. Deshalb wird
+     der Zaehlaufruf als Bild geschickt und sein `onload` abgewartet, bevor
+     weitergeleitet wird. Hoechstens 1,2 Sekunden, dann geht es so oder so
+     weiter.
 -->
 <style>
   html,body{margin:0;height:100%;background:#0B0C0F;color:#F2F1EC;
@@ -59,29 +60,45 @@
   var ortscode = pfad.slice(0, 3), fassung = pfad.slice(3);
   try { sessionStorage.setItem('lr_fassung', fassung); } catch (e) {}
 
-  // Zaehlen, bevor die Seite verschwindet. keepalive haelt die Anfrage am
-  // Leben, no-cors weil der Endpunkt kein CORS spricht und wir die Antwort
-  // ohnehin nicht lesen.
-  try {
-    fetch('https://liquidationsradar.goatcounter.com/count'
-          + '?p=' + encodeURIComponent('/' + pfad)
-          + '&t=' + encodeURIComponent('Kurzlink ' + pfad)
-          + '&r=' + encodeURIComponent(document.referrer || ''),
-          { mode: 'no-cors', keepalive: true, cache: 'no-store' });
-  } catch (e) {}
+  /* Zaehlen, und zwar NACHWEISLICH fertig, bevor weitergeleitet wird.
 
-  fetch('/codes.json', { cache: 'force-cache' })
+     Erster Versuch war `fetch(..., {keepalive: true})` und danach sofort
+     weiterleiten. Auf dem Testserver wurde der Aufruf gezaehlt, auf der
+     Liveseite nicht, und ich konnte nicht sagen warum. Eine Messstelle, bei
+     der ich nicht weiss, ob sie misst, ist keine Messstelle: sie liefert
+     spaeter eine Zahl, die kleiner ist als die Wahrheit, und niemand sieht
+     ihr an, dass etwas fehlt.
+
+     Ein Bild gibt uns ein Ereignis zurueck. onload heisst, der Server hat
+     geantwortet, also ist gezaehlt. Der Endpunkt liefert ein 1x1-GIF, das
+     ist der dafuer vorgesehene Weg. Wir warten darauf, hoechstens 1,2
+     Sekunden, und gehen dann so oder so weiter. */
+  function zaehlen() {
+    return new Promise(function (fertig) {
+      var b = new Image();
+      var t = setTimeout(fertig, 1200);
+      b.onload = b.onerror = function () { clearTimeout(t); fertig(); };
+      b.src = 'https://liquidationsradar.goatcounter.com/count'
+            + '?p=' + encodeURIComponent('/' + pfad)
+            + '&t=' + encodeURIComponent('Kurzlink ' + pfad)
+            + '&r=' + encodeURIComponent(document.referrer || '')
+            + '&rnd=' + String(Math.random()).slice(2);
+    });
+  }
+
+  var ortHolen = fetch('/codes.json', { cache: 'force-cache' })
     .then(function (r) { return r.json(); })
     .then(function (t) {
       if (t[ortscode]) {
         try { sessionStorage.setItem('lr_ort', t[ortscode]); } catch (e) {}
       }
     })
-    .catch(function () {})
-    .then(weiter);
+    .catch(function () {});
 
-  // Notbremse, falls codes.json haengt. Der Besucher sieht dann die Seite
-  // ohne seinen Ort, was immer noch besser ist als ein schwarzer Bildschirm.
+  Promise.all([zaehlen(), ortHolen]).then(weiter);
+
+  // Notbremse, falls eines von beidem haengt. Der Besucher sieht dann die
+  // Seite ohne seinen Ort, was besser ist als ein schwarzer Bildschirm.
   setTimeout(weiter, 2500);
 })();
 </script>
