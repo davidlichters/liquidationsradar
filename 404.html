@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Liquidationsradar</title>
+<!--
+  Der Umschlag fuer die kurzen Links aus unseren Mails.
+
+  WOZU, David am 15.09.2026:
+  "Der link in der email muss viel offensichtlicher irgendwo sein. Und das mit
+   dem Ort muss etwas unauffaelliger sein. liquidationsradar.de/[abc ort][a
+   version], also super unauffaellig sowas wie liquidationsradar.de/aeni"
+
+  Vorher stand in jeder Mail `liquidationsradar.de/?o=birstein`. Das verraet
+  dem Empfaenger zwei Sachen, die er nicht wissen soll: dass sein Ort in der
+  Adresse steckt, und dass hier jemand mitzaehlt. Vier Buchstaben verraten
+  nichts.
+
+  WIE ES FUNKTIONIERT, obwohl die Seite statisch auf GitHub Pages liegt:
+  Fuer /zxka gibt es keine Datei, also liefert GitHub diese 404-Seite aus. Sie
+  liest die vier Buchstaben selbst: die ersten drei sind der Ort (base26,
+  17.576 Plaetze fuer unsere 12.370 Orte), der vierte ist die Mailfassung a
+  bis z.
+
+  ZWEI FEHLER, DIE HIER NAHELIEGEN UND BEIDE VERMIEDEN SIND:
+
+  1. Weiterleiten auf `/?o=birstein`. Dann steht der Ortsname nach dem Klick
+     doch in der Adresszeile, und der ganze Umbau waere Kosmetik gewesen. Ort
+     und Fassung gehen deshalb durch sessionStorage, das Ziel ist die nackte
+     Startseite.
+  2. Zaehlen mit dem normalen GoatCounter-Skript. Das schickt seinen Zaehl-
+     aufruf beim Laden los, und `location.replace` bricht laufende Anfragen
+     ab. Ein Teil der Klicks waere lautlos verschwunden, und zwar der
+     schnellere Teil, also die guten Verbindungen. Stattdessen geht der Aufruf
+     direkt an den count-Endpunkt mit `keepalive: true`: der Browser stellt
+     ihn auch dann noch zu, wenn die Seite schon weg ist.
+-->
+<style>
+  html,body{margin:0;height:100%;background:#0B0C0F;color:#F2F1EC;
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  div{display:grid;place-items:center;height:100%;text-align:center;padding:24px}
+  a{color:#E0704A}
+</style>
+<div>
+  <p>Einen Moment.<br>
+     <noscript>Ohne JavaScript geht es hier weiter:
+       <a href="/">liquidationsradar.de</a></noscript></p>
+</div>
+<script>
+(function () {
+  var pfad = location.pathname.replace(/^\/+|\/+$/g, '');
+  var weg = false;
+  function weiter() { if (weg) return; weg = true; location.replace('/'); }
+
+  // Was kein Kurzcode ist, ist eine echte 404. Direkt auf die Startseite.
+  if (!/^[a-z]{4}$/.test(pfad)) { weiter(); return; }
+
+  var ortscode = pfad.slice(0, 3), fassung = pfad.slice(3);
+  try { sessionStorage.setItem('lr_fassung', fassung); } catch (e) {}
+
+  // Zaehlen, bevor die Seite verschwindet. keepalive haelt die Anfrage am
+  // Leben, no-cors weil der Endpunkt kein CORS spricht und wir die Antwort
+  // ohnehin nicht lesen.
+  try {
+    fetch('https://liquidationsradar.goatcounter.com/count'
+          + '?p=' + encodeURIComponent('/' + pfad)
+          + '&t=' + encodeURIComponent('Kurzlink ' + pfad)
+          + '&r=' + encodeURIComponent(document.referrer || ''),
+          { mode: 'no-cors', keepalive: true, cache: 'no-store' });
+  } catch (e) {}
+
+  fetch('/codes.json', { cache: 'force-cache' })
+    .then(function (r) { return r.json(); })
+    .then(function (t) {
+      if (t[ortscode]) {
+        try { sessionStorage.setItem('lr_ort', t[ortscode]); } catch (e) {}
+      }
+    })
+    .catch(function () {})
+    .then(weiter);
+
+  // Notbremse, falls codes.json haengt. Der Besucher sieht dann die Seite
+  // ohne seinen Ort, was immer noch besser ist als ein schwarzer Bildschirm.
+  setTimeout(weiter, 2500);
+})();
+</script>
+</html>

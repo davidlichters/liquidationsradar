@@ -630,7 +630,16 @@ footer a{color:var(--blue);}
     such(karte.feld.value.trim());
   });
 
+  /* Der Ort kommt aus zwei Quellen, in dieser Reihenfolge:
+       1. ?o=birstein, der alte Weg. Er bleibt, weil Mails mit diesem Link
+          schon draussen sind und weiterhin funktionieren muessen.
+       2. sessionStorage, gesetzt von 404.html beim Kurzlink /zxka. Damit
+          steht nach dem Klick keine Ortsangabe in der Adresszeile.
+     sessionStorage kann werfen, wenn der Besucher Website-Daten blockiert,
+     deshalb der try. Ohne ihn waere die ganze Seite fuer diese Besucher
+     leer, wegen einer Zeile, die nur Komfort ist. */
   var p = new URLSearchParams(location.search).get('o');
+  if (!p) { try { p = sessionStorage.getItem('lr_ort'); } catch (e) {} }
   if (p) {
     karte.form.hidden = true;
     lade().then(function (d) {
