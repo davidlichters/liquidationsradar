@@ -19,9 +19,9 @@
 
   WIE ES FUNKTIONIERT, obwohl die Seite statisch auf GitHub Pages liegt:
   Fuer /zxka gibt es keine Datei, also liefert GitHub diese 404-Seite aus. Sie
-  liest die vier Buchstaben selbst: die ersten drei sind der Ort (base26,
-  17.576 Plaetze fuer unsere 12.370 Orte), der vierte ist die Mailfassung a
-  bis z.
+  liest die vier Buchstaben selbst: der erste ist die Mailfassung a bis z,
+  die drei danach sind der Ort (base26, 17.576 Plaetze fuer unsere 12.370
+  Orte).
 
   ZWEI FEHLER, DIE HIER NAHELIEGEN UND BEIDE VERMIEDEN SIND:
 
@@ -57,7 +57,14 @@
   // Was kein Kurzcode ist, ist eine echte 404. Direkt auf die Startseite.
   if (!/^[a-z]{4}$/.test(pfad)) { weiter(); return; }
 
-  var ortscode = pfad.slice(0, 3), fassung = pfad.slice(3);
+  /* REIHENFOLGE, 15.09.2026: FASSUNG ZUERST, dann der Ort. /bdeg, nicht /degb.
+     David: "Das s oder b soll direkt nach dem / sein, also /sdeg."
+     Die Umstellung war zu diesem Zeitpunkt umsonst zu haben, weil noch keine
+     Mail mit Kurzlink draussen war. Spaeter waere sie ein stiller Bruch:
+     `/sdeg` und `/degs` sind beide gueltig und zeigen auf VERSCHIEDENE Orte
+     (sde = Griebelschied, deg = Krefeld). Deshalb gibt es genau ein Format
+     und keinen Rueckfall auf das alte. */
+  var fassung = pfad.slice(0, 1), ortscode = pfad.slice(1);
   try { sessionStorage.setItem('lr_fassung', fassung); } catch (e) {}
 
   /* Zaehlen, und zwar NACHWEISLICH fertig, bevor weitergeleitet wird.
