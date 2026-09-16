@@ -227,6 +227,19 @@ footer a{color:var(--blue);}
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;gap:40px;padding:56px 0 64px;}
   .karte{max-width:420px;}
+  /* WER UEBER EINEN KURZLINK KOMMT, SIEHT DIE MELDUNG ZUERST. 16.09.2026.
+     GEMESSEN am 16.09. um 00:20 auf 375 px, echte Geraeteemulation: der
+     Firmenname in der Meldung stand erst nach 1,1 Bildschirmen, der Eurobetrag
+     nach 1,6. Die Mail sagt woertlich "So sieht die Meldung aus, mit den
+     Zahlen fuer Ihren Umkreis", und auf dem Telefon landete der Leser
+     stattdessen vor Ueberschrift und Preis und musste einen ganzen Bildschirm
+     scrollen, um das zu finden, wofuer er geklickt hat. Auf dem Schreibtisch
+     steht die Karte rechts daneben, dort faellt es nicht auf, und genau
+     deshalb ist es niemandem aufgefallen.
+     Die Klasse setzt das Skript unten NUR, wenn fuer diesen Ort wirklich ein
+     Fall gefunden wurde. Eine leere Beispielkarte nach vorn zu ziehen waere
+     schlechter als die heutige Reihenfolge. */
+  body.vom-kurzlink .hero .karte{order:-1;}
 }
 @media (max-width:680px){
   body{font-size:18.5px;}
@@ -644,7 +657,13 @@ footer a{color:var(--blue);}
     karte.form.hidden = true;
     lade().then(function (d) {
       var e = d[schluessel(p)];
-      if (e) zeige(e); else karte.form.hidden = false;
+      /* Die Klasse entscheidet auf schmalen Schirmen ueber die Reihenfolge,
+         siehe den Kommentar im Stilblock. Sie wird erst gesetzt, wenn der
+         Fall wirklich da ist: sonst zoege sie eine Karte nach vorn, die noch
+         das Berliner Beispiel zeigt, und der Besucher aus Birstein laese als
+         erstes eine fremde Stadt. */
+      if (e) { zeige(e); document.body.classList.add('vom-kurzlink'); }
+      else karte.form.hidden = false;
     });
   }
 })();
