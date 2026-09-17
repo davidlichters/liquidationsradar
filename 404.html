@@ -54,8 +54,19 @@
   var weg = false;
   function weiter() { if (weg) return; weg = true; location.replace('/'); }
 
-  // Was kein Kurzcode ist, ist eine echte 404. Direkt auf die Startseite.
-  if (!/^[a-z]{4}$/.test(pfad)) { weiter(); return; }
+  /* Was kein Kurzcode ist, ist eine echte 404. Direkt auf die Startseite.
+
+     ZWEI LAENGEN, 17.09.2026. Vier Zeichen sind das alte Format (Fassung +
+     Ort), sieben das neue (Fassung + Ort + Sendung). Beide muessen gelten:
+     am 16. und 17.09. sind 24 Mails mit dem Vierzeichenlink rausgegangen,
+     und die zeigen noch jahrelang hierher.
+
+     WARUM SIEBEN. Der Code stand je ORT. Gemessen an den 10.637 sendbaren
+     Zielen: 8.871 davon (83,4 %) teilten sich einen Code, der groesste
+     Code trug 567 Ziele. Der Klickzaehler bildete Code auf Sendung ab, also
+     stand der Nenner auf der Zahl der CODES statt der Sendungen und die
+     Klickrate waere um einen unbekannten Faktor zu hoch gewesen. */
+  if (!/^[a-z]{4}([a-z]{3})?$/.test(pfad)) { weiter(); return; }
 
   /* REIHENFOLGE, 15.09.2026: FASSUNG ZUERST, dann der Ort. /bdeg, nicht /degb.
      David: "Das s oder b soll direkt nach dem / sein, also /sdeg."
@@ -64,7 +75,10 @@
      `/sdeg` und `/degs` sind beide gueltig und zeigen auf VERSCHIEDENE Orte
      (sde = Griebelschied, deg = Krefeld). Deshalb gibt es genau ein Format
      und keinen Rueckfall auf das alte. */
-  var fassung = pfad.slice(0, 1), ortscode = pfad.slice(1);
+  /* Ortscode sind die Stellen 2 bis 4, egal wie lang der Pfad ist. Die
+     drei danach sind die Sendung und gehen die Seite nichts an: sie
+     stehen im gezaehlten Pfad und werden erst beim Auswerten gebraucht. */
+  var fassung = pfad.slice(0, 1), ortscode = pfad.slice(1, 4);
   try { sessionStorage.setItem('lr_fassung', fassung); } catch (e) {}
 
   /* Zaehlen, und zwar NACHWEISLICH fertig, bevor weitergeleitet wird.
