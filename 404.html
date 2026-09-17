@@ -78,6 +78,13 @@
   /* Ortscode sind die Stellen 2 bis 4, egal wie lang der Pfad ist. Die
      drei danach sind die Sendung und gehen die Seite nichts an: sie
      stehen im gezaehlten Pfad und werden erst beim Auswerten gebraucht. */
+  /* VIER BUCHSTABEN, 17.09.2026. Neue Links tragen einen reinen Schluessel,
+     der gar nichts mehr bedeutet: codes4.json sagt, welche Fassung und
+     welcher Ort dahintersteht. Der Link bleibt damit kurz, egal wie viele
+     Felder wir spaeter brauchen.
+     Der alte Weg bleibt als Rueckfall: 45 Mails mit sieben Zeichen liegen in
+     fremden Postfaechern, und die muessen weiter auflösen. Erst in codes4
+     nachsehen, und nur wenn dort nichts steht, den Pfad zerlegen. */
   var fassung = pfad.slice(0, 1), ortscode = pfad.slice(1, 4);
   try { sessionStorage.setItem('lr_fassung', fassung); } catch (e) {}
 
@@ -107,14 +114,32 @@
     });
   }
 
-  var ortHolen = fetch('/codes.json', { cache: 'force-cache' })
+  var ortHolen = fetch('/codes4.json', { cache: 'force-cache' })
     .then(function (r) { return r.json(); })
-    .then(function (t) {
-      if (t[ortscode]) {
-        try { sessionStorage.setItem('lr_ort', t[ortscode]); } catch (e) {}
+    .then(function (t4) {
+      var e4 = t4[pfad.toLowerCase()];
+      if (e4) {
+        try {
+          sessionStorage.setItem('lr_fassung', e4[0]);
+          sessionStorage.setItem('lr_ort', e4[1]);
+        } catch (e) {}
+        return true;
       }
+      return false;
     })
-    .catch(function () {});
+    .catch(function () { return false; })
+    .then(function (getroffen) {
+      if (getroffen) return;
+      /* Rueckfall auf das alte Format: Fassung an Stelle 1, Ortscode 2 bis 4. */
+      return fetch('/codes.json', { cache: 'force-cache' })
+        .then(function (r) { return r.json(); })
+        .then(function (t) {
+          if (t[ortscode]) {
+            try { sessionStorage.setItem('lr_ort', t[ortscode]); } catch (e) {}
+          }
+        })
+        .catch(function () {});
+    });
 
   Promise.all([zaehlen(), ortHolen]).then(weiter);
 
