@@ -88,6 +88,17 @@
   var fassung = pfad.slice(0, 1), ortscode = pfad.slice(1, 4);
   try { sessionStorage.setItem('lr_fassung', fassung); } catch (e) {}
 
+  /* DER SENDUNGSCODE, 17.09.2026. Bis heute gab 404.html nur Fassung und Ort
+     weiter, und damit war ein Knopfdruck auf der Seite danach nicht mehr
+     einer Sendung zuzuordnen. Folge, gemessen: klicks.mjs filtert eigene
+     Testaufrufe bei den KLICKS heraus (nur Codes aus dem Sendeprotokoll
+     zaehlen) und konnte es bei den KNOEPFEN nicht, weil dort kein Code stand.
+     Der einzige gezaehlte Knopfdruck war ein eigener Test vom 17.09., und in
+     jeder Lagemeldung stand deshalb "Knopfquote 100 %".
+     Der Code ist der ganze Pfad, nicht der Ortsteil: er identifiziert die
+     SENDUNG, und genau das braucht der Filter. */
+  try { sessionStorage.setItem('lr_code', pfad.toLowerCase()); } catch (e) {}
+
   /* Zaehlen, und zwar NACHWEISLICH fertig, bevor weitergeleitet wird.
 
      Erster Versuch war `fetch(..., {keepalive: true})` und danach sofort

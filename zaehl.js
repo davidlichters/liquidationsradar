@@ -50,11 +50,35 @@
     } catch (e) { return ''; }
   }
 
+  /* ═══ DER SENDUNGSCODE, 17.09.2026, UND WARUM ER IN DEN PFAD MUSS ═══
+     Der Ort steht im Titel und das reicht fuer ihn, denn er beschreibt nur.
+     Der Code beschreibt nicht, er FILTERT: klicks.mjs zaehlt einen Aufruf nur
+     dann als Empfaengerklick, wenn sein Code in mail_results.jsonl als
+     gesendet steht. Am 16.09. gehoerten 7 von 8 Pfaden im Zaehler uns selbst;
+     wer sie mitzaehlt, meldet 25 % statt 4,2 %.
+     Bei den KNOEPFEN gab es diesen Filter bis heute nicht, weil kein Code
+     mitging. Folge, gemessen am 17.09.: der einzige gezaehlte Knopfdruck war
+     ein eigener Test, und in jeder Lagemeldung stand "Knopfquote 100 %".
+     In den Titel kann er nicht: GoatCounter haelt je Pfad genau EINEN Titel,
+     also wuerde der zweite Druecker den ersten ueberschreiben. Im Pfad
+     bekommt jede Sendung ihre eigene Zeile, und klicks.mjs summiert sie.
+     Ohne Code bleibt der Pfad wie bisher `knopf/<name>`, und genau der zaehlt
+     dann NICHT mit: ein Besucher ohne Sendung ist keiner unserer Empfaenger. */
+  function code() {
+    try {
+      var p = new URLSearchParams(location.search).get('k');
+      if (p && /^[a-z]{4}([a-z]{3})?$/i.test(p)) return p.toLowerCase();
+      var s = sessionStorage.getItem('lr_code') || '';
+      return /^[a-z]{4}([a-z]{3})?$/.test(s) ? s : '';
+    } catch (e) { return ''; }
+  }
+
   function melden(name) {
     var o = ort();
+    var c = code();
     var u = ZIEL
       + '?e=true'
-      + '&p=' + encodeURIComponent('knopf/' + name)
+      + '&p=' + encodeURIComponent('knopf/' + name + (c ? '/' + c : ''))
       + '&t=' + encodeURIComponent('Knopf ' + name + (o ? ' / ' + o : ''))
       + '&r=' + encodeURIComponent(location.pathname + location.search)
       + '&rnd=' + String(Math.random()).slice(2);
