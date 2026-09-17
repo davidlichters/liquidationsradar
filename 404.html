@@ -141,7 +141,19 @@
     .catch(function () { return false; })
     .then(function (getroffen) {
       if (getroffen) return;
-      /* Rueckfall auf das alte Format: Fassung an Stelle 1, Ortscode 2 bis 4. */
+      /* Rueckfall auf das alte Format: Fassung an Stelle 1, Ortscode 2 bis 4.
+         NUR bei sieben Zeichen, und das ist der Kern der Sache, 17.09.2026:
+         ein neuer Vierbuchstabencode bedeutet aus sich heraus GAR NICHTS.
+         Seine Stellen 2 bis 4 hier trotzdem nachzuschlagen trifft mit rund
+         einem Fuenftel Wahrscheinlichkeit irgendeinen echten Ortscode, und
+         dann sieht der Empfaenger die Zahlen einer fremden Stadt und haelt
+         sie fuer seine. Gemessen am 17.09.: vier von dreizehn gesendeten
+         Vierbuchstabenlinks liefen genau so ins Leere, einer nach Papenburg
+         statt Frechen, einer nach Buxtehude statt Kirchseeon.
+         Die alten VIERSTELLIGEN Links (Fassung + Ortscode, bis 17.09. 12:10)
+         verlieren dadurch ihren Weg nicht: sie stehen seit heute in
+         codes4.json, eingetragen aus dem Sendeprotokoll. */
+      if (pfad.length !== 7) return;
       return fetch('/codes.json', { cache: 'force-cache' })
         .then(function (r) { return r.json(); })
         .then(function (t) {
