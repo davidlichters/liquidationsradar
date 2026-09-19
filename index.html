@@ -161,6 +161,18 @@ h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-he
 .ortform button{flex:none;font:inherit;font-size:15px;font-weight:600;padding:10px 18px;
   border:0;border-radius:8px;background:var(--ink);color:var(--white);cursor:pointer;}
 .ortform button:hover{opacity:.86;}
+/* Apple-Designregeln (emilkowalski/skills, apple-design), 19.09.2026:
+   Rueckmeldung beim Druecken, nicht erst beim Loslassen; auf dem Handy gibt es
+   kein Hover, der Knopf wirkte bisher tot. Weniger Bewegung, wenn das Geraet
+   darum bittet. Sichtbarer Fokus fuer die Tastatur. */
+.knopf,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+button{transition:transform .1s ease-out,opacity .2s ease;}
+.knopf:active,button:active{transform:scale(.97);transition-duration:.1s;}
+.knopf:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  .knopf,button{transition:none;}
+  .knopf:hover,.knopf:active,button:active{transform:none;}
+}
 .orthinweis{margin:10px 0 0;font-size:15px;color:var(--grey);line-height:1.4;}
 .orthinweis.fehlt{color:var(--ink);}
 
