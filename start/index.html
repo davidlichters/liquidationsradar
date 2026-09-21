@@ -102,7 +102,11 @@ Mensch, und Sie bekommen an dem Tag eine Antwort.</p>
   try {
     var b = new Image();
     b.src = 'https://liquidationsradar.goatcounter.com/count'
-      + '?p=' + encodeURIComponent('/start-bild')
+      /* Ein Aufruf von der Festplatte ist unsere eigene Abnahme, nie ein
+         Kunde. Er bekommt einen eigenen Pfad, den zahlung_signal.mjs ueber
+         "probe" ausschliesst. Am 21.09. hat die Abnahme im Browser genau so
+         einen Treffer erzeugt. */
+      + '?p=' + encodeURIComponent(location.protocol === 'file:' ? '/start-bild-probe' : '/start-bild')
       + '&t=' + encodeURIComponent('Zahllink Rueckkehr')
       + '&r=' + encodeURIComponent(document.referrer || '')
       + '&rnd=' + Math.random().toString(36).slice(2);
