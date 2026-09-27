@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="/apple-touch-icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Liquidationsradar">
+<meta name="application-name" content="Liquidationsradar">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="Jeden Werktag die neuen Auflösungen von GmbH und UG aus Ihrem Gebiet, am Morgen nach der Bekanntmachung im Bundesanzeiger. 79 Euro im Monat für ein Gebiet.">
+<meta name="robots" content="noindex">
+<title>Liquidationsradar, Auflösungen aus Ihrem Gebiet</title>
+<style>
+:root{
+  --white:#FFFFFF; --ink:#1D1D1F; --grey:#5A5B60; --line:#D2D2D7; --fill:#F5F5F7;
+  --g-sun:linear-gradient(96deg,#FF9F0A 0%,#FF6B2C 45%,#FF375F 100%);
+  --g-sea:linear-gradient(96deg,#32ADE6 0%,#0A84FF 50%,#5E5CE6 100%);
+  --g-bloom:linear-gradient(96deg,#FF375F 0%,#D63AD0 50%,#8E5AF2 100%);
+  --g-leaf:linear-gradient(96deg,#30D158 0%,#0FB5A8 55%,#0A84FF 100%);
+  --blue:#0071E3;
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sf);
+  font-size:19.5px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;}
+.bahn{max-width:980px;margin:0 auto;padding:0 32px;}
+.eng{max-width:680px;}
+.grad{background-image:var(--g,var(--g-sun));-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.06em;}
+
+/* Kopfleiste: damit die Seite als Firmenseite erkannt wird, nicht als Dokument */
+.kopf{border-bottom:1px solid var(--line);}
+.kopf .in{max-width:980px;margin:0 auto;padding:18px 32px;display:flex;align-items:baseline;
+  justify-content:space-between;gap:20px;}
+.kopf .wort{font-size:19px;font-weight:700;letter-spacing:-.02em;}
+.kopf .wort span{font-weight:400;color:var(--grey);margin-left:10px;font-size:15px;letter-spacing:-.01em;}
+.kopf a{font-size:15px;color:var(--grey);text-decoration:none;white-space:nowrap;}
+.kopf a:hover{color:var(--ink);}
+
+/* Hero: Text links, das Produkt rechts. Genau ein bunter Teil im Blickfeld. */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:64px;align-items:center;
+  padding:88px 0 96px;}
+h1{margin:0 0 20px;font-size:58px;font-weight:700;letter-spacing:-.035em;line-height:1.05;text-wrap:balance;}
+.lede{color:var(--grey);font-size:22px;line-height:1.38;letter-spacing:-.02em;margin:0 0 34px;max-width:30ch;}
+.tun{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.knopf{display:inline-block;background:var(--ink);color:var(--white);text-decoration:none;
+  font-size:17px;font-weight:600;letter-spacing:-.012em;padding:15px 26px;border-radius:999px;
+  transition:transform .28s cubic-bezier(.28,.72,.24,1);}
+.knopf:hover{transform:translateY(-1px);}
+.zweit{font-size:17px;font-weight:600;color:var(--blue);text-decoration:none;}
+.knopf:focus-visible,.zweit:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+.frei{font-size:16px;color:var(--grey);margin:22px 0 0;}
+
+/* Das Produkt: die Nachricht, die wir schicken. Unser einziges Bild. */
+/* Oeffentlich gebaut, eingebaut 14.09.2026 auf Davids Entscheidung.
+   Die Zahl steht hier unten und nicht oben neben dem Preis: im Empfaengertest
+   vom 13.09. war die groesste Sorge nicht "kann der das", sondern
+   "ist der in zwei Jahren noch da". Genau darauf antwortet Sichtbarkeit,
+   und nur darauf. Neben dem Preis gelesen wirkt dieselbe Zahl wie Spielerei.
+
+   GEAENDERT 14.09. 13:00 auf Davids Anweisung: statt Zahlenkacheln und Text
+   steht dort jetzt der Profilscreenshot. Kein grauer Kasten mehr, nur das
+   Bild mit feiner Kante auf weissem Grund. Der Screenshot ist der Beleg,
+   jede Nacherzaehlung daneben waere schwaecher als das Bild selbst. */
+/* Hoehe an die Schrift gebunden, nicht an den Bildschirm: 4em sind immer
+   viermal die Schriftgroesse des Fliesstextes, also 78 px auf dem Rechner und
+   74 px auf dem Telefon, wo der Koerper auf 18,5 px faellt. Stellt jemand die
+   Schrift im Browser groesser, waechst das Bild mit. Breite folgt dem
+   Seitenverhaeltnis, deshalb width:auto statt einer festen Zahl. */
+/* Das Seitenvideo. 20 Sekunden, stumm verstaendlich: auf einer Verkaufsseite
+   laeuft ein Video ohne Ton, bis jemand ihn aktiv anschaltet, und fast niemand
+   tut das. Deshalb traegt jede Aussage im Bild. 580 KB, damit es das Laden der
+   Seite nicht spuerbar verlangsamt. */
+.film{margin:20px 0 26px;padding:0;max-width:560px;}
+.film video{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#0B0C0F;}
+.film figcaption{margin:9px 0 0;font-size:.9em;line-height:1.5;color:var(--grey);}
+/* Die drei Bilder, 16.09.2026. Gleiche Breite und gleicher Rahmen wie das
+   Video, damit die Seite nicht auseinanderfaellt. width und height stehen im
+   Tag, sonst springt das Layout beim Nachladen. */
+.bild{margin:20px 0 26px;padding:0;max-width:560px;}
+.bild img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--fill);}
+.bild figcaption{margin:9px 0 0;font-size:.9em;line-height:1.5;color:var(--grey);}
+/* Die Beispielmeldung. Als HTML, nicht als Bildschirmfoto: auf einem 375er
+   Handy waere ein 1100 px breites Foto auf 331 px gequetscht, der Mailtext
+   waere 7 px hoch und damit Dekoration statt Beleg. Gemessen 15.09.2026. */
+.meldung{margin:22px 0 26px;padding:0;max-width:520px;}
+.meldung .rahmen{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--white);}
+.meldung .kopf{padding:13px 16px;border-bottom:1px solid var(--line);background:var(--fill);font-size:.8em;line-height:1.5;color:var(--grey);}
+.meldung .kopf b{color:var(--ink);font-weight:600;}
+.meldung .betreff{padding:14px 16px 0;font-weight:700;letter-spacing:-.01em;}
+.meldung .leib{padding:10px 16px 20px;font-size:.94em;line-height:1.6;}
+.meldung .leib p{margin:0 0 16px;}
+.meldung .eyebrow{font-size:.78em;letter-spacing:.1em;text-transform:uppercase;color:#B5341A;margin:0 0 4px;}
+.meldung .firma{font-size:1.25em;font-weight:700;letter-spacing:-.015em;margin:0 0 2px;}
+.meldung .ort{color:var(--grey);font-size:.9em;margin:0 0 16px;}
+.meldung table{border-collapse:collapse;width:100%;margin:0 0 16px;}
+.meldung td{padding:0 12px 6px 0;vertical-align:top;}
+.meldung td.l{color:var(--grey);white-space:nowrap;}
+.meldung .treffer td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);}
+.meldung .treffer td:last-child{padding-right:0;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.meldung .klein{color:var(--grey);font-size:.88em;}
+.meldung .fussz{margin:0;padding-top:14px;border-top:1px solid var(--line);color:var(--grey);font-size:.85em;}
+.meldung figcaption{margin:9px 0 0;font-size:.9em;line-height:1.5;color:var(--grey);}
+
+/* AUFKLAPPTEIL, 14.09.2026. Wer hier landet, hat die Kaltmail schon gelesen:
+   das Problem kennt er, er prueft jetzt, wer wir sind und was es kostet.
+   Die vier Abschnitte mit Risiko, Quelle, Trefferquote und Preisvergleich
+   beantworten Fragen, die er erst spaeter stellt. Sie stehen deshalb hinter
+   dem Knopf statt davor. Geloescht ist nichts. */
+.tiefer{margin:32px 0 0;border-top:1px solid var(--line);}
+.tiefer > summary{list-style:none;cursor:pointer;padding:18px 0 0;
+  font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey);}
+.tiefer > summary::-webkit-details-marker{display:none;}
+.tiefer > summary::after{content:" +";font-weight:400;}
+.tiefer[open] > summary::after{content:" −";}
+.tiefer > summary:hover{color:var(--ink);}
+.tiefer-inhalt{padding-top:4px;}
+.karte{background:var(--fill);border-radius:12px;padding:26px 24px;}
+.karte .zeile{font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
+  text-transform:uppercase;margin:0 0 18px;}
+.karte .firma{font-size:20px;font-weight:640;letter-spacing:-.02em;line-height:1.25;margin:0 0 4px;}
+.karte .ort{font-size:15px;color:var(--grey);margin:0 0 20px;}
+.karte dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px;}
+.karte dt{color:var(--grey);white-space:nowrap;}
+.karte dd{margin:0;font-variant-numeric:tabular-nums;}
+.karte .fuss{margin:20px 0 0;font-size:16px;color:var(--grey);line-height:1.45;}
+
+/* Ortsfeld, eingebaut 14.09.2026. Es ersetzt die IP-Erkennung: die Seite liegt
+   auf GitHub Pages und hat keinen Server, und eine geschaetzte Stadt ist bei
+   50 bis 80 Prozent Trefferquote schlechter als gar keine. Kommt der Besucher
+   ueber einen Link aus unserer Mail, steht der Ort schon im Parameter ?o= und
+   das Feld bleibt verborgen. */
+
+/* DIE ORTSSUMME, 14.09.2026, Davids Entscheidung und sein Wortlaut.
+   Der Satz steht im Konjunktiv und nennt beide Nenner, die Zahl der Firmen und
+   die der Glaeubiger. Ein Leser, der 550.000 durch 425 teilt, kommt auf 1.295
+   und hat damit dieselbe Zahl, die auch in unserer eigenen Schaetzung steht.
+   Genau deshalb traegt der Satz: er haelt dem Nachrechnen stand. */
+.gerettet{margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);
+  font-size:16px;line-height:1.45;}
+.gerettet b{font-size:21px;font-weight:660;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;display:block;margin-bottom:4px;}
+.gerettet small{display:block;margin-top:8px;font-size:15px;color:var(--grey);line-height:1.4;}
+.ortform{margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);}
+.ortform label{display:block;font-size:15px;color:var(--grey);margin:0 0 8px;}
+.ortzeile{display:flex;gap:8px;}
+.ortform input{flex:1 1 auto;min-width:0;font:inherit;font-size:16px;padding:10px 12px;
+  border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);}
+.ortform input:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:var(--ink);}
+.ortform button{flex:none;font:inherit;font-size:15px;font-weight:600;padding:10px 18px;
+  border:0;border-radius:8px;background:var(--ink);color:var(--white);cursor:pointer;}
+.ortform button:hover{opacity:.86;}
+/* Apple-Designregeln (emilkowalski/skills, apple-design), 19.09.2026:
+   Rueckmeldung beim Druecken, nicht erst beim Loslassen; auf dem Handy gibt es
+   kein Hover, der Knopf wirkte bisher tot. Weniger Bewegung, wenn das Geraet
+   darum bittet. Sichtbarer Fokus fuer die Tastatur. */
+.knopf,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+button{transition:transform .1s ease-out,opacity .2s ease;}
+.knopf:active,button:active{transform:scale(.97);transition-duration:.1s;}
+.knopf:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  .knopf,button{transition:none;}
+  .knopf:hover,.knopf:active,button:active{transform:none;}
+}
+.orthinweis{margin:10px 0 0;font-size:15px;color:var(--grey);line-height:1.4;}
+.orthinweis.fehlt{color:var(--ink);}
+
+
+/* Kurzfassung: gemessen liest ein Besucher 20 bis 28 Prozent der Woerter und
+   entscheidet in den ersten zehn Sekunden. Hier steht das ganze Angebot. */
+.kurz{background:var(--fill);border-radius:12px;padding:26px 28px;margin:0 0 12px;}
+.kurz .kt{font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
+  text-transform:uppercase;margin:0 0 14px;}
+.kurz ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:13px;}
+.kurz li{font-size:17.5px;line-height:1.52;color:var(--grey);}
+.kurz li b{color:var(--ink);font-weight:640;}
+
+h2{margin:96px 0 16px;font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1.12;text-wrap:balance;}
+p{margin:0 0 18px;}
+.g{color:var(--grey);}
+.q{font-size:16px;color:var(--grey);line-height:1.6;}
+strong{font-weight:640;}
+
+table{border-collapse:collapse;width:100%;font-size:18px;margin:22px 0 10px;}
+th{text-align:left;font-size:12.5px;font-weight:600;color:var(--grey);letter-spacing:.06em;
+  text-transform:uppercase;padding:0 0 10px;border-bottom:1px solid var(--line);}
+th.r,td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+td{padding:14px 0;border-bottom:1px solid var(--line);vertical-align:baseline;}
+tr:last-child td{border-bottom:0;}
+td.ort,td.datum{color:var(--grey);font-size:16px;}
+td.ort{padding-left:14px;}
+td.datum{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.rollt{overflow-x:auto;}
+
+.gegen .reihe{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;align-items:baseline;
+  padding:22px 0;border-bottom:1px solid var(--line);}
+.gegen .reihe:last-child{border-bottom:0;}
+.gegen .was{font-size:20px;}
+.gegen .was small{display:block;color:var(--grey);font-size:16.5px;margin-top:7px;line-height:1.52;}
+.gegen .pr{font-size:28px;font-weight:700;letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.gegen .pr em{font-style:normal;font-size:16px;font-weight:400;color:var(--grey);}
+.gegen .uns .was{font-weight:640;}
+.gegen .uns .pr{font-size:42px;}
+
+/* Zahlenreihe: das einzige Element, das mehrere bunte Stellen haben darf,
+   weil es als EIN Bild gelesen wird. Die Ueberschrift darueber bleibt schwarz. */
+.zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:30px 0 34px;}
+.zahlen .k{background:var(--fill);border-radius:12px;padding:22px 18px 20px;text-align:center;}
+.zahlen .oben{font-size:15.5px;letter-spacing:.01em;color:var(--grey);margin:0 0 6px;}
+.zahlen .z{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:0 0 10px;}
+.zahlen .unten{font-size:15.5px;color:var(--grey);line-height:1.4;margin:0;}
+.zahlen .unten b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+.masch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 44px;margin:30px 0 10px;}
+.masch b{display:block;font-size:21px;font-weight:640;letter-spacing:-.022em;margin-bottom:7px;}
+.masch span{color:var(--grey);font-size:17.5px;line-height:1.55;}
+
+.schritte{list-style:none;margin:28px 0 0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:26px;}
+.schritte li{counter-increment:s;}
+.schritte .nr{font-size:12.5px;font-weight:700;color:var(--grey);letter-spacing:.06em;display:block;margin-bottom:6px;}
+.schritte .nr::before{content:"0" counter(s);}
+.schritte b{font-size:21px;font-weight:640;letter-spacing:-.022em;display:block;margin-bottom:4px;}
+.schritte span.t{color:var(--grey);font-size:18px;}
+
+.klar{color:var(--grey);font-size:17.5px;border-left:2px solid var(--line);padding-left:20px;margin:26px 0;}
+
+footer{border-top:1px solid var(--line);margin-top:104px;padding:34px 0 88px;font-size:15.5px;color:var(--grey);line-height:1.65;}
+footer b{color:var(--ink);font-weight:600;}
+footer a{color:var(--blue);}
+.fz{margin:0 0 14px;}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px;padding:56px 0 64px;}
+  .karte{max-width:420px;}
+  /* WER UEBER EINEN KURZLINK KOMMT, SIEHT DIE MELDUNG ZUERST. 16.09.2026.
+     GEMESSEN am 16.09. um 00:20 auf 375 px, echte Geraeteemulation: der
+     Firmenname in der Meldung stand erst nach 1,1 Bildschirmen, der Eurobetrag
+     nach 1,6. Die Mail sagt woertlich "So sieht die Meldung aus, mit den
+     Zahlen fuer Ihren Umkreis", und auf dem Telefon landete der Leser
+     stattdessen vor Ueberschrift und Preis und musste einen ganzen Bildschirm
+     scrollen, um das zu finden, wofuer er geklickt hat. Auf dem Schreibtisch
+     steht die Karte rechts daneben, dort faellt es nicht auf, und genau
+     deshalb ist es niemandem aufgefallen.
+     Die Klasse setzt das Skript unten NUR, wenn fuer diesen Ort wirklich ein
+     Fall gefunden wurde. Eine leere Beispielkarte nach vorn zu ziehen waere
+     schlechter als die heutige Reihenfolge. */
+  body.vom-kurzlink .hero .karte{order:-1;}
+}
+@media (max-width:680px){
+  body{font-size:18.5px;}
+  .bahn{padding:0 22px;} .kopf .in{padding:15px 22px;}
+  h1{font-size:36px;} .lede{font-size:19.5px;max-width:none;margin-bottom:28px;}
+  h2{font-size:26px;margin-top:68px;}
+  .masch{grid-template-columns:1fr;gap:26px;}
+  .zahlen{grid-template-columns:1fr;gap:12px;}
+  .zahlen .k{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;
+    align-items:center;text-align:left;padding:18px 20px;}
+  .zahlen .oben{grid-column:2;margin:0;}
+  .zahlen .z{grid-row:1 / span 2;grid-column:1;font-size:40px;margin:0;}
+  .zahlen .unten{grid-column:2;}
+  .kurz{padding:22px 20px;} .kurz li{font-size:17px;}
+  .gegen .reihe{grid-template-columns:1fr;gap:8px;} .gegen .pr{font-size:25px;}
+  .gegen .uns .pr{font-size:34px;}
+  table{font-size:16.5px;}
+  .kopf .wort span{display:none;}
+  /* Die Adresse ist jetzt 34 Zeichen lang statt 20 und lief auf 390 px aus dem
+     Bild. Sie steht drei Zentimeter weiter unten als Knopf und im Impressum,
+     also braucht die Kopfzeile sie auf dem Handy nicht. */
+  .kopf a{display:none;}
+
+  /* Tabellen auf dem Handy nicht quetschen, sondern stapeln. Vorher lief die
+     Kopfzeile ineinander und die rechte Spalte hing halb aus dem Bild. */
+  .stapel thead{display:none;}
+  .stapel,.stapel tbody,.stapel tr,.stapel td{display:block;width:100%;}
+  .stapel tr{padding:16px 0;border-bottom:1px solid var(--line);}
+  .stapel tbody tr:last-child{border-bottom:0;}
+  /* Lange Werte standen auf dem Label. Deshalb stapelt eine Zelle jetzt
+     grundsaetzlich (Label ueber Wert); nur die kurzen Zahlenzellen .r
+     bleiben die zweispaltige Zeile, fuer die sie gebaut wurden. */
+  .stapel td{border:0;padding:0;text-align:left;white-space:normal;}
+  .stapel td + td{margin-top:8px;}
+  .stapel td::before{content:attr(data-l);display:block;color:var(--grey);font-size:16px;margin-bottom:2px;}
+  .stapel td.h{font-size:20px;font-weight:640;letter-spacing:-.02em;margin-bottom:12px;}
+  .stapel td.h::before{font-size:15px;font-weight:400;letter-spacing:0;margin-bottom:3px;line-height:1.3;}
+  .stapel td.r{display:flex;justify-content:space-between;align-items:baseline;gap:18px;white-space:nowrap;}
+  .stapel td.r::before{display:inline;flex:1 1 auto;min-width:0;margin-bottom:0;white-space:normal;}
+}
+</style>
+</head>
+<body>
+
+<header class="kopf"><div class="in">
+  <div class="wort">Liquidationsradar<span>Bundesanzeiger, jeden Werktag</span></div>
+  <a data-zaehl="umkreis-kopf-mail" href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a>
+</div></header>
+
+<div class="bahn">
+
+<div class="hero">
+  <div>
+    <h1>Wer in Ihrer Gegend aufgelöst wird, wissen Sie <span class="grad">am Morgen danach</span>.</h1>
+    <p class="lede">Eine aufgelöste GmbH muss zu Geld machen, was noch dasteht, und das entscheidet der Liquidator, kein Insolvenzverwalter. Bekannt gemacht wird es nur im Bundesanzeiger. Ich schicke Ihnen die Auflösungen aus Ihrem Gebiet. <strong>79 Euro im Monat für ein Gebiet.</strong> Umsatzsteuer fällt nicht an, § 19 UStG.</p>
+    <div class="tun">
+      <a data-zaehl="umkreis-whatsapp" class="knopf" href="https://wa.me/4915730331937?text=Guten%20Tag%20Herr%20Lichters%2C%20ich%20komme%20von%20liquidationsradar.de.%20Mein%20Gebiet%3A%20">Gebiet schicken</a>
+      <a data-zaehl="umkreis-mail" class="zweit" href="mailto:david.lichters@liquidationsradar.de?subject=Mein%20Gebiet">oder per E-Mail</a>
+    </div>
+    <p class="frei">Oder antworten Sie auf meine Mail, ein Landkreis oder eine Zahl in Kilometern genügt. Die WhatsApp-Nummer ist David Lichters, Krefeld, Anschrift unten.</p>
+  </div>
+  <div class="karte">
+    <p class="zeile" id="k-zeile">Liquidationsradar · Beispiel</p>
+    <p class="firma" id="k-firma">Binnewies Unternehmensberatung GmbH</p>
+    <p class="ort" id="k-ort">Berlin</p>
+    <dl id="k-dl">
+      <dt>Vorgang</dt><dd>Auflösung, Gläubigeraufruf</dd>
+      <dt>Bekanntgemacht</dt><dd>10.09.2026</dd>
+      <dt>Sperrjahr endet</dt><dd>10.09.2027</dd>
+    </dl>
+    <p class="fuss" id="k-fuss">So sieht eine Meldung aus: Name, Ort, Datum der Bekanntmachung und der Tag, an dem das Sperrjahr endet.</p>
+    <form class="ortform" id="k-form" autocomplete="off">
+      <label for="k-eingabe">Wo sind Sie unterwegs?</label>
+      <div class="ortzeile">
+        <input id="k-eingabe" name="ort" type="text" placeholder="z. B. Hamm" spellcheck="false" enterkeyhint="go">
+        <button type="submit">Zeigen</button>
+      </div>
+      <p class="orthinweis" id="k-hinweis">Dann steht hier ein echter Fall aus Ihrer Gegend statt des Beispiels oben.</p>
+    </form>
+  </div>
+</div>
+
+<div class="eng">
+
+<div class="kurz">
+  <p class="kt">In fünf Zeilen</p>
+  <ul>
+    <li><b>Warum das zählt.</b> Die Liquidatoren haben das Vermögen in Geld umzusetzen, so steht es in § 70 GmbHG. Solange Lager und Räume stehen, läuft die Miete weiter. Verteilt und gelöscht wird erst nach dem Sperrjahr, vorher muss weg, was noch da ist.</li>
+    <li><b>Was ich tue.</b> Ich lese jeden Werktag die neuen Auflösungen im Bundesanzeiger, bundesweit rund 120, und ziehe die aus Ihrem Gebiet heraus.</li>
+    <li><b>Was Sie bekommen.</b> Jede neue Auflösung aus Ihrem Gebiet, per Mail am Morgen nach der Bekanntmachung: Name, Ort, Datum und der Tag, an dem das Sperrjahr endet. Dazu den Liquidator, soweit er im Handelsregister steht, meistens ist es der bisherige Geschäftsführer.</li>
+    <li><b>Was nicht dabei ist.</b> Ob bei einer Firma wirklich etwas herumsteht, weiß ich nicht, ich habe Name, Ort und Datum. <strong>Insolvenzen stehen auf insolvenzbekanntmachungen.de und sind nicht dabei.</strong> Dort entscheidet der Verwalter.</li>
+    <li><b>Was es kostet.</b> Die ersten Tage schicke ich Ihnen, damit Sie sehen, was kommt. Soll es dauerhaft laufen, kostet es 79 Euro im Monat für ein Gebiet, ohne Umsatzsteuer nach § 19 UStG, monatlich kündbar. Sie bekommen eine Rechnung per E-Mail und überweisen.</li>
+  </ul>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+  <p class="fz"><a href="/impressum/">Impressum</a> &nbsp; <a href="/datenschutz/">Datenschutz</a></p>
+  <p class="fz"><b>Anbieterkennzeichnung nach § 5 DDG</b></p>
+  <p class="fz">David Lichters<br>Maurenbrecherstraße 16<br>47803 Krefeld<br>Deutschland</p>
+  <p class="fz">WhatsApp: <a data-zaehl="umkreis-fuss-whatsapp" href="https://wa.me/4915730331937">+49 1573 0331937</a><br>E-Mail: <a data-zaehl="umkreis-fuss-mail" href="mailto:david.lichters@liquidationsradar.de">david.lichters@liquidationsradar.de</a></p>
+  <p class="fz">Umsatzsteuer: Kleinunternehmer nach § 19 UStG, es wird keine Umsatzsteuer ausgewiesen.</p>
+<!-- selbstschuss-ok: Pflichtangabe zur Datenquelle -->
+  <p class="fz">Datenquelle: Gesellschaftsbekanntmachungen im Bundesanzeiger und Handelsregister, öffentlich zugänglich. Die rund 120 je Werktag sind 31.417 Liquidations-Bekanntmachungen vom 12.09.2025 bis 11.09.2026 geteilt durch 261 Werktage. Liquidationsradar ist kein Rechtsdienstleister und erteilt keine Rechtsberatung.</p>
+</footer>
+
+<script>
+/* DIE SEITE FUER RAEUMER UND KAEUFER, 28.09.2026, Runde 201.
+   Wer hierher kommt, hat den Raeumertext gelesen: "So sieht die Meldung aus,
+   mit den Zahlen fuer Ihren Umkreis". Bis heute fuehrte derselbe Link auf die
+   Glaeubigerseite ("Ihr Firmenkunde wird aufgeloest", "Drei Namen pruefen
+   lassen"), und genau diesen Bruch hat restposten24 am 23.09. gesehen.
+   404.html schickt nur Codes hierher, die codes4.json mit "u" markiert
+   (werkzeug/linkcode.mjs --seite, Regel wie nachfass_kalt istRaeumerNachfass).
+   Die Karte liest denselben Eintrag aus orte.json wie die Hauptseite, also
+   steht hier dieselbe Zahl wie in seiner Mail. Keine Glaeubigersumme, keine
+   Kundennummer: beides waere fuer einen Raeumer falsch. */
+(function () {
+  var karte = {
+    zeile: document.getElementById('k-zeile'),
+    firma: document.getElementById('k-firma'),
+    ort:   document.getElementById('k-ort'),
+    dl:    document.getElementById('k-dl'),
+    fuss:  document.getElementById('k-fuss'),
+    form:  document.getElementById('k-form'),
+    feld:  document.getElementById('k-eingabe'),
+    hinweis: document.getElementById('k-hinweis')
+  };
+  if (!karte.form) return;
+
+  function schluessel(t) {
+    return String(t).toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[^a-z0-9]/g,'');
+  }
+  function plusEinJahr(d) {
+    var t = String(d).split('.');
+    if (t.length !== 3) return null;
+    return t[0] + '.' + t[1] + '.' + (Number(t[2]) + 1);
+  }
+
+  var daten = null, laedt = null;
+  function lade() {
+    if (daten) return Promise.resolve(daten);
+    if (laedt) return laedt;
+    laedt = fetch('/orte.json').then(function (r) { return r.json(); })
+      .then(function (j) { daten = j.orte || {}; return daten; })
+      .catch(function () { daten = {}; return daten; });
+    return laedt;
+  }
+
+  function zeige(eintrag) {
+    var f = eintrag.faelle[0];
+    karte.zeile.textContent = 'Liquidationsradar · ' + eintrag.anzahl
+      + ' Auflösungen im ' + eintrag.km + ' km Umkreis von ' + eintrag.ort;
+    karte.firma.textContent = f.n;
+    karte.ort.textContent = f.o;
+    var ende = plusEinJahr(f.d);
+    karte.dl.innerHTML =
+      '<dt>Vorgang</dt><dd>Auflösung, Gläubigeraufruf</dd>' +
+      '<dt>Bekanntgemacht</dt><dd>' + f.d + '</dd>' +
+      (ende ? '<dt>Sperrjahr endet</dt><dd>' + ende + '</dd>' : '') +
+      (Number(eintrag.fristen) > 0
+        ? '<dt>Sperrjahr endet bald</dt><dd>bei ' + eintrag.fristen + ' weiteren Firmen im Umkreis</dd>' : '');
+    karte.fuss.textContent = 'Eine echte Bekanntmachung aus den letzten '
+      + eintrag.tage + ' Tagen, keine Musterkarte. Die übrigen ' + (eintrag.anzahl - 1)
+      + ' stehen in meiner Mail. Ob dort noch etwas steht, weiß ich nicht, ich habe Name, Ort und Datum.';
+    karte.form.hidden = true;
+  }
+
+  function such(text) {
+    var k = schluessel(text);
+    if (!k) return;
+    karte.hinweis.textContent = 'Suche …';
+    karte.hinweis.className = 'orthinweis';
+    lade().then(function (d) {
+      var e = d[k];
+      if (e) { zeige(e); return; }
+      karte.hinweis.textContent = 'Zu „' + text + '“ liegt hier nichts vor. '
+        + 'Schreiben Sie mir Ihr Gebiet, dann sehe ich im vollen Archiv nach.';
+      karte.hinweis.className = 'orthinweis fehlt';
+    });
+  }
+
+  karte.form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    such(karte.feld.value.trim());
+  });
+
+  var p = new URLSearchParams(location.search).get('o');
+  if (!p) { try { p = sessionStorage.getItem('lr_ort'); } catch (e) {} }
+  if (p) {
+    karte.form.hidden = true;
+    lade().then(function (d) {
+      var e = d[schluessel(p)];
+      if (e) { zeige(e); document.body.classList.add('vom-kurzlink'); }
+      else karte.form.hidden = false;
+    });
+  }
+})();
+</script>
+
+<script data-goatcounter="https://liquidationsradar.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script src="/zaehl.js" defer></script>
+</body>
+</html>

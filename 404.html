@@ -52,7 +52,13 @@
 (function () {
   var pfad = location.pathname.replace(/^\/+|\/+$/g, '');
   var weg = false;
-  function weiter() { if (weg) return; weg = true; location.replace('/'); }
+  /* ZWEI ZIELE, 28.09.2026, Runde 201. Wer den Raeumertext bekommen hat
+     ("Wie weit fahren Sie?"), landet auf /umkreis/, alle anderen auf der
+     Glaeubigerseite. Bis heute gingen beide auf "/", und der Raeumer las dort
+     "Ihr Firmenkunde wird aufgeloest" und "Drei Namen pruefen lassen".
+     Welche Mail er bekam, steht als drittes Feld "u" in codes4.json. */
+  var ziel = '/';
+  function weiter() { if (weg) return; weg = true; location.replace(ziel); }
 
   /* Was kein Kurzcode ist, ist eine echte 404. Direkt auf die Startseite.
 
@@ -134,6 +140,7 @@
           sessionStorage.setItem('lr_fassung', e4[0]);
           sessionStorage.setItem('lr_ort', e4[1]);
         } catch (e) {}
+        if (e4[2] === 'u') ziel = '/umkreis/';
         return true;
       }
       return false;
